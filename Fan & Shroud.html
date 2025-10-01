@@ -106,15 +106,12 @@
             display: block;
             transition: transform 0.3s ease-in-out;
         }
-        .image-ticker-card:hover img {
+        .image-ticker-card:not(.has-interactive-video):hover img {
             transform: scale(1.03);
+             cursor: pointer;
         }
-         /* Disable hover effect for the interactive video card */
-        .image-ticker-card.has-interactive-video {
+         .image-ticker-card.has-interactive-video {
             cursor: default;
-        }
-         .image-ticker-card.has-interactive-video:hover video {
-            transform: none;
         }
         .ticker-inner {
             display: flex;
@@ -151,8 +148,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            mix-blend-mode: screen;
-            opacity: 0.3; /* Adjusted for better contrast */
+            mix-blend-mode: hard-light;
+            opacity: 0.2;
             z-index: 2;
         }
         .build-hero::after {
@@ -198,8 +195,8 @@
     </div>
 
     <div class="build-hero">
-        <img src="https://images.unsplash.com/photo-1605640108229-6e9f2c24c2a6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            data-src="https://images.unsplash.com/photo-1605640108229-6e9f2c24c2a6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+        <img src="https://images.unsplash.com/photo-1621993202324-b8b0c8413a29?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            data-src="https://images.unsplash.com/photo-1621993202324-b8b0c8413a29?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
             onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';" 
             alt="Mechanical Background" 
             class="parallax-img hidden lg:block"
@@ -212,7 +209,7 @@
                 <div id="tickerInner" class="ticker-inner">
                     <!-- Gallery items for Fan & Shroud -->
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=1000" alt="Universal 18in Fan & Shroud Image 1" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
-                    <div class="image-ticker-card has-interactive-video"><video id="interactiveFanVideo" preload="metadata"><source src="https://github.com/WIKDMotorsports/TestSite/raw/refs/heads/main/FanInteract.mp4" type="video/mp4"></video></div>
+                    <div class="image-ticker-card has-interactive-video"><video id="interactiveFanVideo" preload="metadata" playsinline muted><source src="https://github.com/WIKDMotorsports/TestSite/raw/refs/heads/main/FanInteract.mp4" type="video/mp4"></video></div>
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08216_1.jpg?v=1734036302&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08216_1.jpg?v=1734036302&width=1000" alt="Universal 18in Fan & Shroud Image 2" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
                 </div>
                 <div class="gradient-overlay-bottom"></div>
@@ -426,11 +423,9 @@
                     }
                 }, 100); 
             }
-            const relatedHoverIn = () => relatedProductsAnimation && relatedProductsAnimation.pause();
-            const relatedHoverOut = () => relatedProductsAnimation && relatedProductsAnimation.play();
             if (relatedProductsWrapper) {
-                relatedProductsWrapper.addEventListener('mouseenter', relatedHoverIn);
-                relatedProductsWrapper.addEventListener('mouseleave', relatedHoverOut);
+                relatedProductsWrapper.addEventListener('mouseenter', () => relatedProductsAnimation && relatedProductsAnimation.pause());
+                relatedProductsWrapper.addEventListener('mouseleave', () => relatedProductsAnimation && relatedProductsAnimation.play());
             }
         }
         
@@ -464,11 +459,7 @@
                     if (allProducts.length < 4) {
                         allProducts.push(...nonPrimaryProducts.filter(p => !allProducts.includes(p)).slice(0, 4 - allProducts.length));
                     }
-                    if (allProducts.length === 0) {
-                        relatedProductsContainer.innerHTML = '<p class="text-gray-500 text-center py-10 w-full">No other products available.</p>';
-                        return;
-                    }
-                    relatedProductsContainer.innerHTML = allProducts.map(p => `<a href="${p.link || '#'}" class="related-product-card flex-shrink-0 w-64 sm:w-80 p-4 rounded-xl bg-black/50 border border-gray-800 shadow-xl transition-all duration-300 hover:bg-black/75 hover:border-red-500 block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 z-30"><div class="h-40 overflow-hidden rounded-lg mb-4"><img src="${p.image?.src || ''}" onerror="this.src='https://placehold.co/800x600/1e293b/f8fafc?text=WIKD+Product'" alt="${p.image?.alt || p.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"></div><h3 class="text-xl font-bold font-heading text-white uppercase truncate">${p.title}</h3><p class="text-sm text-gray-400 mt-1">${p.categories.map(c => c.toUpperCase()).join(' / ')}</p><div class="mt-3 text-2xl font-bold font-heading" style="color: var(--color-primary);">${p.price ? `$${p.price.toFixed(2)}` : 'Inquire'}</div></a>`).join('');
+                    relatedProductsContainer.innerHTML = allProducts.length > 0 ? allProducts.map(p => `<a href="${p.link || '#'}" class="related-product-card flex-shrink-0 w-64 sm:w-80 p-4 rounded-xl bg-black/50 border border-gray-800 shadow-xl transition-all duration-300 hover:bg-black/75 hover:border-red-500 block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 z-30"><div class="h-40 overflow-hidden rounded-lg mb-4"><img src="${p.image?.src || ''}" onerror="this.src='https://placehold.co/800x600/1e293b/f8fafc?text=WIKD+Product'" alt="${p.image?.alt || p.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"></div><h3 class="text-xl font-bold font-heading text-white uppercase truncate">${p.title}</h3><p class="text-sm text-gray-400 mt-1">${p.categories.map(c => c.toUpperCase()).join(' / ')}</p><div class="mt-3 text-2xl font-bold font-heading" style="color: var(--color-primary);">${p.price ? `$${p.price.toFixed(2)}` : 'Inquire'}</div></a>`).join('') : '<p class="text-gray-500 text-center py-10 w-full">No other products available.</p>';
                     setTimeout(cloneAndStartScroll, 100);
                 }
             } catch (error) {
@@ -478,24 +469,25 @@
         }
 
         const showLightboxItem = (index) => {
-            currentIndex = (index + originalItems.length) % originalItems.length;
-             const item = originalItems[currentIndex];
-            if (item.type === 'image') {
-                lightboxImg.src = item.src;
+            currentIndex = mod(index, originalItems.filter(i => i.type === 'image').length);
+            const imageItems = originalItems.filter(i => i.type === 'image');
+            lightboxImg.src = imageItems[currentIndex].src;
+            if (lightbox.classList.contains('opacity-0')) {
                 lightbox.classList.remove('opacity-0', 'pointer-events-none');
             }
         };
         
         const setupLightboxListeners = (selector) => {
             document.querySelectorAll(selector).forEach((item, index) => {
-                 if (item.classList.contains('has-interactive-video')) {
+                if (item.classList.contains('has-interactive-video') || item.querySelector('video')) {
                     return;
                 }
                 const newItem = item.cloneNode(true);
                 item.parentNode.replaceChild(newItem, item);
-                 if (newItem.querySelector('img')) {
-                    newItem.addEventListener('click', () => showLightboxItem(index % originalItems.length));
-                }
+                newItem.addEventListener('click', () => {
+                    const imageIndex = originalItems.filter(i => i.type === 'image').findIndex(i => i.src === newItem.querySelector('img').getAttribute('data-src'));
+                    showLightboxItem(imageIndex);
+                });
             });
         };
         
@@ -505,7 +497,12 @@
             document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
             document.querySelector('.lightbox-prev').addEventListener('click', () => showLightboxItem(currentIndex - 1));
             document.querySelector('.lightbox-next').addEventListener('click', () => showLightboxItem(currentIndex + 1));
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lightbox.classList.contains('opacity-0')) closeLightbox(); });
+            document.addEventListener('keydown', (e) => { 
+                if (lightbox.classList.contains('opacity-0')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showLightboxItem(currentIndex - 1);
+                if (e.key === 'ArrowRight') showLightboxItem(currentIndex + 1);
+            });
         }
         
        function setupInteractiveVideo(videoElement) {
@@ -565,22 +562,25 @@
                 videoElement.currentTime = 0;
             });
 
+            const parentCard = videoElement.closest('.image-ticker-card, .mobile-gallery-item');
+
             if (!isTouchDevice()) {
-                videoElement.closest('.image-ticker-card').addEventListener('mouseenter', () => {
+                parentCard.addEventListener('mouseenter', () => {
                     isHovering = true;
                     stopReversePlayback();
                     videoElement.currentTime = 0;
                     isPlayingInitialSegment = true;
                     videoElement.play().catch(e => console.warn("Video play interrupted", e));
                 });
-                videoElement.closest('.image-ticker-card').addEventListener('mouseleave', () => {
+                parentCard.addEventListener('mouseleave', () => {
                     isHovering = false;
                     isPlayingInitialSegment = false;
                     videoElement.pause();
                     if (videoElement.currentTime > 0) playReverseFrames();
                 });
             } else {
-                 videoElement.closest('.has-interactive-video').addEventListener('touchstart', () => {
+                 parentCard.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
                     isHolding = true;
                     stopReversePlayback();
                     holdTimeout = setTimeout(() => {
@@ -591,7 +591,7 @@
                         }
                     }, holdDelay);
                  });
-                 videoElement.closest('.has-interactive-video').addEventListener('touchend', () => {
+                 parentCard.addEventListener('touchend', () => {
                     clearTimeout(holdTimeout);
                     if (isHolding) {
                         isHolding = false;
@@ -600,7 +600,7 @@
                         if (videoElement.currentTime > 0) playReverseFrames();
                     }
                  });
-                 videoElement.closest('.has-interactive-video').addEventListener('touchcancel', () => {
+                 parentCard.addEventListener('touchcancel', () => {
                     clearTimeout(holdTimeout);
                     isHolding = false;
                     isPlayingInitialSegment = false;
@@ -701,39 +701,44 @@
             if (isMobile) setupMobileView(); else setupDesktopView();
             renderRelatedProducts(); 
             const initialOpenContent = document.getElementById('collapse-overview');
-            if (initialOpenContent) setTimeout(() => { initialOpenContent.style.maxHeight = initialOpenContent.scrollHeight + 'px'; if (!isMobile) syncHeights(); }, 50);
+            if (initialOpenContent) setTimeout(() => { 
+                initialOpenContent.style.maxHeight = initialOpenContent.scrollHeight + 'px'; 
+            }, 50);
+
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.anim-stagger').forEach(elem => gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%', toggleActions: 'play none none none', }, opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' }));
         }
-        let resizeTimer;
-        window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { const newIsMobile = window.innerWidth < 1024; if (newIsMobile !== isMobile) window.location.reload(); else if (!newIsMobile) syncHeights(); }, 250); });
+        
+        window.addEventListener('resize', () => { 
+            clearTimeout(window.resizeTimer); 
+            window.resizeTimer = setTimeout(() => { 
+                const newIsMobile = window.innerWidth < 1024; 
+                if (newIsMobile !== isMobile) window.location.reload(); 
+            }, 250); 
+        });
         
         initializePage();
-
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.anim-stagger').forEach(elem => gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%', toggleActions: 'play none none none', }, opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' }));
         
-        document.querySelectorAll('.collapse-toggle').forEach(button => button.addEventListener('click', (event) => {
+        // --- COLLAPSIBLES (ACCORDION) ---
+        document.querySelectorAll('.collapse-toggle').forEach(button => button.addEventListener('click', () => {
             const targetId = button.getAttribute('data-target');
             const content = document.getElementById(targetId);
-            if (!isMobile && observer) observer.disconnect();
             const isCurrentlyOpen = button.getAttribute('data-open') === 'true';
-            if (isCurrentlyOpen) {
-                content.style.maxHeight = '0px';
-                button.setAttribute('data-open', 'false');
-                button.querySelector('i').style.transform = 'rotate(0deg)';
-            } else {
-                document.querySelectorAll('#product-details-sections .collapse-toggle').forEach(btn => {
-                    const otherContent = document.getElementById(btn.getAttribute('data-target'));
-                    otherContent.style.maxHeight = '0px';
-                    btn.setAttribute('data-open', 'false');
-                    btn.querySelector('i').style.transform = 'rotate(0deg)';
-                });
+            
+            document.querySelectorAll('#product-details-sections .collapse-toggle').forEach(btn => {
+                document.getElementById(btn.getAttribute('data-target')).style.maxHeight = '0px';
+                btn.setAttribute('data-open', 'false');
+                btn.querySelector('i').style.transform = 'rotate(0deg)';
+            });
+
+            if (!isCurrentlyOpen) {
                 content.style.maxHeight = content.scrollHeight + 'px';
                 button.setAttribute('data-open', 'true');
                 button.querySelector('i').style.transform = 'rotate(180deg)';
             }
-            setTimeout(() => { if (!isMobile) { syncHeights(); if (observer) observer.observe(contentCard, { attributes: true, childList: true, subtree: true }); } }, 500);
         }));
         
+        // --- INTEREST FORM ---
         const formHTML = `<div id="wikd-form-container" data-product-title="WIKD Motorsports - Universal 18in Fan & Shroud" class="bg-gray-900/50 border border-gray-800 clip-path-data-section p-6 md:p-8 w-full max-w-2xl mx-auto font-sans text-white"><style>#wikd-form-container .loader{border-top-color:var(--color-primary);animation:wikd-spin 1s linear infinite}@keyframes wikd-spin{to{transform:rotate(360deg)}}#wikd-form-container input,#wikd-form-container select{background-color:#1a1a1a;border-color:#3a3a3a;color:#eaeaea}#wikd-form-container input::placeholder{color:#888}#wikd-form-container input:focus,#wikd-form-container select:focus{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary);outline:none}#wikd-form-container select:disabled{background-color:#333;cursor:not-allowed}</style><h1 id="form-title" class="text-2xl font-bold mb-2 font-heading uppercase">Submit Your Interest</h1><p id="form-subtitle" class="text-gray-400 mb-6">Fill out the form below to be notified.</p><form id="interest-form"><div class="hidden mb-4"><input type="hidden" id="primary-product-id" name="primaryProductId"><input type="hidden" id="primary-product-title" name="primaryProductTitle"></div><div id="additional-product-section" class="mb-4"><label for="product-select" class="block text-sm font-semibold text-gray-400 mb-2">Add Other Products (Optional)</label><div class="flex gap-2"><select id="product-select" class="block w-full px-4 py-3 rounded-md shadow-sm"><option value="" disabled selected>Loading...</option></select><button type="button" id="add-product-button" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition whitespace-nowrap">Add +</button></div><div id="added-products-list" class="mt-4 space-y-2"></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="first-name" class="block text-sm font-semibold text-gray-400 mb-2">First Name</label><input type="text" id="first-name" name="firstName" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="John"></div><div><label for="last-name" class="block text-sm font-semibold text-gray-400 mb-2">Last Name</label><input type="text" id="last-name" name="lastName" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="Appleseed"></div><div><label for="email" class="block text-sm font-semibold text-gray-400 mb-2">Email Address</label><input type="email" id="email" name="email" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="john.appleseed@email.com"></div><div><label for="phone" class="block text-sm font-semibold text-gray-400 mb-2">Phone</label><input type="tel" id="phone" name="phone" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="(555) 123-4567"></div></div><div class="mt-6"><button type="submit" id="submit-button" class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"><span id="button-text">Submit Inquiry</span><div id="button-loader" class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6 ml-3 hidden"></div></button></div></form><div id="status-message" class="mt-4 text-center text-sm"></div></div>`;
         document.getElementById('wikd-interest-form').innerHTML = formHTML;
 
@@ -741,12 +746,9 @@
         const formCollapsibleContainer = document.getElementById('form-collapsible-container');
         if (waitlistButton) {
             waitlistButton.addEventListener('click', () => {
-                isAnimatingForm = true;
-                if (observer) observer.disconnect();
                 const isOpen = formCollapsibleContainer.style.maxHeight && formCollapsibleContainer.style.maxHeight !== '0px';
                 formCollapsibleContainer.style.maxHeight = isOpen ? '0px' : formCollapsibleContainer.scrollHeight + 'px';
                 waitlistButton.querySelector('i').style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-                setTimeout(() => { if (!isMobile) { syncHeights(); if (observer) observer.observe(contentCard, { attributes: true, childList: true, subtree: true }); } isAnimatingForm = false; }, 700);
             });
             new ResizeObserver(() => { if(formCollapsibleContainer.style.maxHeight && formCollapsibleContainer.style.maxHeight !== '0px') formCollapsibleContainer.style.maxHeight = formCollapsibleContainer.scrollHeight + 'px'; }).observe(formCollapsibleContainer);
         }
@@ -809,4 +811,5 @@
     </script>
 </body>
 </html>
+
 
