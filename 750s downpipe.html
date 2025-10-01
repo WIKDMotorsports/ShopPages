@@ -1,0 +1,639 @@
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WIKD - McLaren 570S Downpipe (Purple Heat)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom styles to complement Tailwind */
+        :root {
+            --color-primary: #9370DB; /* Purple Heat theme */
+        }
+        
+        /* FIX: Ensure HTML/Body fill the space and cover any external injection artifacts */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #0A0A0A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #EAEAEA;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        .font-heading {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .lava-gradient-text {
+            background: linear-gradient(90deg, #483d8b, #9370db, #ee82ee, #9370db, #483d8b);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: lavaFlow 5s ease-in-out infinite;
+        }
+        .lava-gradient-bg {
+            background: linear-gradient(90deg, #483d8b, #9370db, #ee82ee, #9370db, #483d8b);
+            background-size: 300%;
+            animation: lavaFlow 5s ease-in-out infinite;
+        }
+        @keyframes lavaFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* --- CLIP PATHS --- */
+        .clip-path-custom {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 97%);
+        }
+        .clip-path-data-section {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0 95%);
+        }
+        
+        /* -- THEME COLOR CORRECTION -- */
+        *:focus-visible {
+            outline: 2px solid var(--color-primary) !important;
+            outline-offset: 2px;
+        }
+        .mods-list li::before, .mods-section ul li::before {
+            content: '■';
+            color: var(--color-primary);
+            margin-right: 0.75rem;
+            font-size: 0.8em;
+        }
+        
+        /* --- DESKTOP VERTICAL TICKER --- */
+        .ticker-wrapper {
+            position: relative;
+            flex-shrink: 0;
+            width: 100%;
+            max-width: 40rem;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .ticker-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .image-ticker-card {
+            width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .image-ticker-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-ticker-card:hover img {
+            transform: scale(1.03);
+        }
+        .ticker-inner {
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+        .gradient-overlay-top, .gradient-overlay-bottom {
+            position: sticky;
+            left: 0;
+            width: 100%;
+            height: 10rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .gradient-overlay-top {
+            top: 0;
+            background: linear-gradient(to bottom, #0A0A0A, rgba(10, 10, 10, 0));
+        }
+        .gradient-overlay-bottom {
+            bottom: 0;
+            background: linear-gradient(to top, #0A0A0A, rgba(10, 10, 10, 0));
+        }
+
+        /* --- HERO & PARALLAX (Desktop Only) --- */
+        .build-hero {
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+        .parallax-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mix-blend-mode: screen;
+            opacity: 0.4;
+            z-index: 2;
+        }
+        .build-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 70%);
+            z-index: 4;
+        }
+        
+        #ultra-stealth-patch {
+            width: 10px;
+            height: 10px;
+            background-color: #0A0A0A;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    
+    <div id="ultra-stealth-patch"></div>
+
+    <div id="mobileGalleryWrapper" class="lg:hidden fixed top-0 left-0 w-full h-[45vh] z-[110] overflow-hidden">
+        <div id="mobileTickerInner" class="flex h-full will-change-transform">
+            <!-- Mobile gallery items will be populated by JS -->
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
+    </div>
+
+    <div class="build-hero">
+        <img src="https://images.unsplash.com/photo-1590364960331-f5b9d2d6f51f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            data-src="https://images.unsplash.com/photo-1590364960331-f5b9d2d6f51f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';" 
+            alt="McLaren 570S Parallax Background" 
+            class="parallax-img hidden lg:block"
+        />
+
+        <div class="relative z-10 flex flex-col lg:flex-row justify-end lg:justify-center items-end lg:items-start lg:min-h-screen lg:p-24 lg:gap-12">
+        
+            <div id="tickerWrapper" class="ticker-wrapper hidden lg:block">
+                <div class="gradient-overlay-top"></div>
+                <div id="tickerInner" class="ticker-inner">
+                    <!-- Gallery items for McLaren 570S Downpipe -->
+                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4698.jpg?v=1734125210&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4698.jpg?v=1734125210&width=1000" alt="McLaren 570S Downpipe Image 1" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4699.jpg?v=1734125210&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4699.jpg?v=1734125210&width=1000" alt="McLaren 570S Downpipe Image 2" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4700.jpg?v=1734125210&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4700.jpg?v=1734125210&width=1000" alt="McLaren 570S Downpipe Image 3" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4701.jpg?v=1734125210&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4701.jpg?v=1734125210&width=1000" alt="McLaren 570S Downpipe Image 4" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4702.jpg?v=1734125210&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4702.jpg?v=1734125210&width=1000" alt="McLaren 570S Downpipe Image 5" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4710.jpg?v=1734125210&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4710.jpg?v=1734125210&width=1000" alt="McLaren 570S Downpipe Image 6" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                </div>
+                <div class="gradient-overlay-bottom"></div>
+            </div>
+            
+            <main id="contentCard" class="relative z-20 w-full lg:w-1/2 max-w-4xl bg-[#0A0A0A] lg:bg-black/75 border-t border-gray-800 lg:border-t-0 lg:border border-gray-800 shadow-2xl lg:clip-path-custom flex flex-col mt-[45vh] lg:mt-0">
+            
+                <header class="flex flex-col gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6">
+                    <div class="w-full">
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase font-heading lava-gradient-text whitespace-nowrap">MCLAREN 570S</h1>
+                    </div>
+                    <div class="w-full flex justify-between items-baseline">
+                        <h2 class="text-base sm:text-lg md:text-xl font-heading text-white whitespace-nowrap uppercase">Ti DOWNPIPE</h2>
+                        <div class="text-right">
+                            <span class="text-base sm:text-lg md:text-xl font-bold font-heading whitespace-nowrap" style="color: var(--color-primary);">$2,699.99</span>
+                            <span class="text-sm sm:text-base md:text-lg font-heading whitespace-nowrap text-gray-400 ml-1">USD</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="h-1 w-full lava-gradient-bg"></div>
+
+                <div class="px-4 sm:px-5 md:px-6 lg:px-8 pt-6 sm:pt-8 lg:pb-10">
+                
+                    <section class="anim-stagger mb-10">
+                        <button id="waitlist-toggle-button" class="w-full flex justify-between items-center text-left p-4 rounded-md text-xl font-bold uppercase font-heading transition-all duration-300 lava-gradient-bg text-white shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-purple-400">
+                            <span>Join The Waitlist</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div id="form-collapsible-container" class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out">
+                            <div class="pt-6">
+                                <div id="wikd-interest-form">
+                                    <!-- FORM WILL BE INJECTED HERE -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="product-details-sections" class="anim-stagger mb-10">
+                        <div class="border-b border-gray-800">
+                            <button type="button" class="collapse-toggle w-full flex justify-between items-center py-4 text-left text-lg font-semibold uppercase font-heading text-white hover:text-purple-400 transition" data-target="collapse-overview" data-open="true">
+                                Overview: Unrestricted Power & Aggressive Sound
+                                <i class="fas fa-chevron-down transition-transform duration-300 transform rotate-180"></i>
+                            </button>
+                            <div id="collapse-overview" class="collapse-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: fit-content;">
+                                <div class="pb-4 text-gray-300 space-y-3">
+                                    <p>Unlock unrestricted power and an aggressive race-bred exhaust note with our Titanium Downpipes, designed specifically for the McLaren 570S, 540C, and 570GT. While the factory downpipes feature a high-flow catalytic converter, they still create significant exhaust flow restrictions, limiting the true potential of your twin-turbocharged 3.8L V8. Our 3” full titanium construction eliminates these bottlenecks, delivering maximum flow, increased performance, and exhilarating sound.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-800">
+                            <button type="button" class="collapse-toggle w-full flex justify-between items-center py-4 text-left text-lg font-semibold uppercase font-heading text-white hover:text-purple-400 transition" data-target="collapse-craft" data-open="false">
+                                Titanium Craftsmanship & Race-Bred Tone
+                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div id="collapse-craft" class="collapse-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                                <div class="pb-4 text-gray-300 space-y-3">
+                                     <p>Constructed from ultra-lightweight 1.2mm titanium tubing, these downpipes significantly reduce backpressure, allowing your turbochargers to spool faster and operate more efficiently. The result? Enhanced throttle response, increased boost capabilities, and substantial horsepower gains—perfect for those seeking to extract the full potential of their McLaren.</p>
+                                     <p>Even when paired with the stock muffler, these downpipes dramatically enhance the exhaust tone, deepening the V8 growl while unleashing the high-pitched wail of a GT4 racecar. The Brushed Purple heat-treated finish not only adds a stunning visual appeal but also ensures long-term durability in extreme conditions.</p>
+                                     <p>Engineered for OE fitment, these downpipes are precision laser-welded for flawless integration, offering both exceptional strength and significant weight savings. Whether you're tuning your McLaren for maximum power gains or simply looking to enhance its sound and character, these titanium downpipes are the ultimate foundation for performance upgrades.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-10 anim-stagger">
+                        <div class="mods-section">
+                            <h3 class="text-3xl font-bold uppercase font-heading border-b border-gray-800 pb-2 mb-4">Key Features</h3>
+                            <div class="mt-4 space-y-6">
+                                <div>
+                                    <ul class="mt-4 space-y-2 text-gray-300 text-lg">
+                                        <li>3” 1.2mm Titanium Construction</li>
+                                        <li>Maximum Exhaust Flow</li>
+                                        <li>Refined Exhaust Note</li>
+                                        <li>Brushed Purple Heat-Treated Finish</li>
+                                        <li>Laser-Welded Precision</li>
+                                        <li>OE Fitment & Easy Installation</li>
+                                        <li>Essential for Tuning</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <section class="py-8 bg-[#080808]">
+        <div class="px-4 sm:px-6 lg:px-24">
+            <h2 class="text-4xl font-bold uppercase font-heading text-white mb-8 border-b border-gray-800 pb-4">Related Products</h2>
+        </div>
+        
+        <div id="relatedProductsScrollWrapper" class="relative overflow-hidden cursor-default">
+            
+            <div id="relatedProductsContainer" class="flex flex-nowrap space-x-6 pb-10 w-max will-change-transform px-4 sm:px-6 lg:px-24">
+                <div class="text-gray-500 min-w-full text-center py-10 w-full">Loading related products...</div>
+            </div>
+            
+            <div class="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
+            <div class="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
+
+            <button id="related-prev" class="absolute left-4 sm:left-6 lg:left-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 transition text-white text-2xl flex items-center justify-center shadow-lg opacity-80 hover:opacity-100 disabled:opacity-30 disabled:pointer-events-none">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="related-next" class="absolute right-4 sm:right-6 lg:right-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 transition text-white text-2xl flex items-center justify-center shadow-lg opacity-80 hover:opacity-100 disabled:opacity-30 disabled:pointer-events-none">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+        </div>
+    </section>
+
+    <div id="lightbox" class="fixed top-0 left-0 w-full h-full bg-black/90 z-[120] flex justify-center items-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative max-w-4xl max-h-full">
+            <button class="lightbox-close absolute -top-10 right-0 text-white text-4xl transition-colors hover:text-purple-400">&times;</button>
+            <button class="lightbox-prev absolute top-1/2 -left-4 sm:-left-12 text-white text-4xl -translate-y-1/2 transition-colors hover:text-purple-400">&lt;</button>
+            <button class="lightbox-next absolute top-1/2 -right-4 sm:-right-12 text-white text-4xl -translate-y-1/2 transition-colors hover:text-purple-400">&gt;</button>
+            <img src="" alt="Lightbox image" id="lightboxImg" class="max-w-full max-h-[90vh] rounded-lg">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        function mod(n, m) { return ((n % m) + m) % m; }
+        
+        const contentCard = document.getElementById('contentCard');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        
+        const originalItems = Array.from(document.querySelectorAll('#tickerInner .image-ticker-card img')).map(img => ({
+            type: 'image',
+            src: img.getAttribute('data-src')
+        })).filter(item => item.src);
+
+
+        let currentIndex = 0;
+        let desktopTickerAnimation;
+        let mobileTickerAnimation;
+        let isMobile = window.innerWidth < 1024;
+        let observer;
+        let isAnimatingForm = false;
+
+        const syncHeights = () => { 
+            if (isAnimatingForm) return;
+            const tickerWrapper = document.getElementById('tickerWrapper');
+            if (contentCard && tickerWrapper && !isMobile) {
+                tickerWrapper.style.height = `${contentCard.offsetHeight}px`;
+            } 
+        };
+
+        const productsUrl = 'https://cdn.shopify.com/s/files/1/0671/4635/0805/files/Shopandgallerydata.json?v=1755272886';
+        const primaryProductId = 'mclaren-570-downpipe';
+
+        const relatedProductsContainer = document.getElementById('relatedProductsContainer');
+        const relatedProductsWrapper = document.getElementById('relatedProductsScrollWrapper');
+        const relatedPrev = document.getElementById('related-prev');
+        const relatedNext = document.getElementById('related-next');
+        let relatedProductsAnimation;
+        
+        function startContinuousScroll() {
+            if (relatedProductsAnimation) relatedProductsAnimation.kill();
+            const scrollDistance = relatedProductsContainer.scrollWidth / 2;
+            const speedFactor = 25; 
+            const scrollDuration = scrollDistance / speedFactor; 
+            gsap.set(relatedProductsContainer, { x: 0 });
+            relatedProductsAnimation = gsap.to(relatedProductsContainer, { x: -scrollDistance, duration: scrollDuration, ease: "none", repeat: -1, modifiers: { x: x => (parseFloat(x) % scrollDistance) + 'px' } });
+        }
+        
+        function cloneAndStartScroll() {
+            const originalCards = relatedProductsContainer.querySelectorAll('.related-product-card:not(.cloned)');
+            if (originalCards.length > 0 && relatedProductsContainer.querySelectorAll('.cloned').length === 0) {
+                originalCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    clone.classList.add('cloned');
+                    relatedProductsContainer.appendChild(clone);
+                });
+                setTimeout(() => {
+                    const firstCard = originalCards[0];
+                    const cardWidth = firstCard ? firstCard.offsetWidth : 0; 
+                    if (cardWidth === 0) return;
+                    const spaceX = 24; 
+                    const requiredWidth = (originalCards.length * 2 * cardWidth) + ((originalCards.length * 2 - 1) * spaceX);
+                    relatedProductsContainer.style.width = `${requiredWidth}px`;
+                    if (relatedProductsContainer.scrollWidth / 2 > relatedProductsWrapper.clientWidth) {
+                        startContinuousScroll();
+                        setupRelatedScrollButtons();
+                    } else {
+                        relatedPrev.style.display = 'none';
+                        relatedNext.style.display = 'none';
+                    }
+                }, 100); 
+            }
+            const relatedHoverIn = () => relatedProductsAnimation && relatedProductsAnimation.pause();
+            const relatedHoverOut = () => relatedProductsAnimation && relatedProductsAnimation.play();
+            if (relatedProductsWrapper) {
+                relatedProductsWrapper.addEventListener('mouseenter', relatedHoverIn);
+                relatedProductsWrapper.addEventListener('mouseleave', relatedHoverOut);
+            }
+        }
+        
+        function setupRelatedScrollButtons() {
+            relatedPrev.addEventListener('click', (e) => manualScroll('prev', e));
+            relatedNext.addEventListener('click', (e) => manualScroll('next', e));
+        }
+        
+        function manualScroll(direction) {
+            if (!relatedProductsAnimation || relatedPrev.disabled || relatedNext.disabled) return;
+            relatedPrev.disabled = true;
+            relatedNext.disabled = true;
+            relatedProductsAnimation.pause();
+            const firstCard = relatedProductsContainer.querySelector('.related-product-card');
+            const scrollAmount = firstCard ? firstCard.offsetWidth + 24 : 300;
+            const stepDuration = (scrollAmount / (relatedProductsContainer.scrollWidth / 2)) * relatedProductsAnimation.duration();
+            let targetTime = direction === 'next' ? relatedProductsAnimation.time() + stepDuration : relatedProductsAnimation.time() - stepDuration;
+            const newTime = mod(targetTime, relatedProductsAnimation.duration()); 
+            gsap.to(relatedProductsAnimation, { time: newTime, duration: 0.5, ease: "power2.out", onComplete: () => { relatedProductsAnimation.play(); relatedPrev.disabled = false; relatedNext.disabled = false; } });
+        }
+
+        async function renderRelatedProducts() {
+            try {
+                const response = await fetch(productsUrl);
+                if (!response.ok) throw new Error('Failed to fetch products');
+                const data = await response.json();
+                if (data && Array.isArray(data.shop)) {
+                    const nonPrimaryProducts = data.shop.filter(p => p.id !== primaryProductId);
+                    const relevantProducts = nonPrimaryProducts.filter(p => p.categories.includes('mclaren'));
+                    let allProducts = relevantProducts.slice(0, 4);
+                    if (allProducts.length < 4) {
+                        allProducts.push(...nonPrimaryProducts.filter(p => !allProducts.includes(p)).slice(0, 4 - allProducts.length));
+                    }
+                    if (allProducts.length === 0) {
+                        relatedProductsContainer.innerHTML = '<p class="text-gray-500 text-center py-10 w-full">No other products available.</p>';
+                        return;
+                    }
+                    relatedProductsContainer.innerHTML = allProducts.map(p => `<a href="${p.link || '#'}" class="related-product-card flex-shrink-0 w-64 sm:w-80 p-4 rounded-xl bg-black/50 border border-gray-800 shadow-xl transition-all duration-300 hover:bg-black/75 hover:border-purple-500 block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400 z-30"><div class="h-40 overflow-hidden rounded-lg mb-4"><img src="${p.image?.src || ''}" onerror="this.src='https://placehold.co/800x600/1e293b/f8fafc?text=WIKD+Product'" alt="${p.image?.alt || p.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"></div><h3 class="text-xl font-bold font-heading text-white uppercase truncate">${p.title}</h3><p class="text-sm text-gray-400 mt-1">${p.categories.map(c => c.toUpperCase()).join(' / ')}</p><div class="mt-3 text-2xl font-bold font-heading" style="color: var(--color-primary);">${p.price ? `$${p.price.toFixed(2)}` : 'Inquire'}</div></a>`).join('');
+                    setTimeout(cloneAndStartScroll, 100);
+                }
+            } catch (error) {
+                console.error('Error rendering related products:', error);
+                relatedProductsContainer.innerHTML = `<p class="text-red-500 text-center py-10 w-full">Error loading data.</p>`;
+            }
+        }
+
+        const showLightboxItem = (index) => {
+            currentIndex = (index + originalItems.length) % originalItems.length;
+            lightboxImg.src = originalItems[currentIndex].src;
+            lightbox.classList.remove('opacity-0', 'pointer-events-none');
+        };
+        
+        const setupLightboxListeners = (selector) => {
+            document.querySelectorAll(selector).forEach((item, index) => {
+                const newItem = item.cloneNode(true);
+                item.parentNode.replaceChild(newItem, item);
+                newItem.addEventListener('click', () => showLightboxItem(index % originalItems.length));
+            });
+        };
+        
+        const closeLightbox = () => lightbox.classList.add('opacity-0', 'pointer-events-none');
+
+        if (lightbox) {
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            document.querySelector('.lightbox-prev').addEventListener('click', () => showLightboxItem(currentIndex - 1));
+            document.querySelector('.lightbox-next').addEventListener('click', () => showLightboxItem(currentIndex + 1));
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lightbox.classList.contains('opacity-0')) closeLightbox(); });
+        }
+
+        function setupMobileView() {
+            if (desktopTickerAnimation) desktopTickerAnimation.kill();
+            const mobileTickerInner = document.getElementById('mobileTickerInner');
+            if (mobileTickerInner.children.length > 0) return;
+            mobileTickerInner.innerHTML = originalItems.map(item => `<div class="mobile-gallery-item h-full flex-shrink-0 mr-4"><img src="${item.src}" class="h-full w-auto object-cover rounded-md"></div>`).join('');
+            const items = mobileTickerInner.querySelectorAll('.mobile-gallery-item');
+            items.forEach(item => mobileTickerInner.appendChild(item.cloneNode(true)));
+            setupLightboxListeners('.mobile-gallery-item');
+            gsap.set(mobileTickerInner, {x: 0});
+            mobileTickerAnimation = gsap.to(mobileTickerInner, { x: '-50%', duration: 40, ease: 'none', repeat: -1 });
+            setTimeout(() => window.scrollTo({ top: document.getElementById('mobileGalleryWrapper').offsetHeight * 0.85, behavior: 'smooth' }), 100);
+        }
+
+        function setupDesktopView() {
+            if (mobileTickerAnimation) mobileTickerAnimation.kill();
+            const tickerWrapper = document.getElementById('tickerWrapper');
+            const tickerInner = document.getElementById('tickerInner');
+            if (tickerInner.querySelectorAll('.cloned').length > 0) return;
+            const originalTickerItems = tickerInner.querySelectorAll('.image-ticker-card:not(.cloned)');
+            if (originalTickerItems.length > 0) {
+                 originalTickerItems.forEach(item => tickerInner.appendChild(item.cloneNode(true)));
+            }
+            syncHeights();
+            window.addEventListener('resize', syncHeights);
+            observer = new MutationObserver(syncHeights);
+            observer.observe(contentCard, { attributes: true, childList: true, subtree: true });
+            let isHovering = false;
+            tickerWrapper.addEventListener('mouseenter', () => isHovering = true);
+            tickerWrapper.addEventListener('mouseleave', () => isHovering = false);
+            function animateScroll() {
+                if (!isHovering && tickerWrapper) {
+                    tickerWrapper.scrollTop += 0.5;
+                    if (tickerWrapper.scrollTop >= tickerInner.offsetHeight / 2) tickerWrapper.scrollTop = 0;
+                }
+                desktopTickerAnimation = requestAnimationFrame(animateScroll);
+            }
+            animateScroll();
+            setupLightboxListeners('.image-ticker-card');
+        }
+
+        function initializePage() {
+            isMobile = window.innerWidth < 1024;
+            if (isMobile) setupMobileView(); else setupDesktopView();
+            renderRelatedProducts(); 
+            const initialOpenContent = document.getElementById('collapse-overview');
+            if (initialOpenContent) setTimeout(() => { initialOpenContent.style.maxHeight = initialOpenContent.scrollHeight + 'px'; if (!isMobile) syncHeights(); }, 50);
+        }
+        let resizeTimer;
+        window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { const newIsMobile = window.innerWidth < 1024; if (newIsMobile !== isMobile) window.location.reload(); else if (!newIsMobile) syncHeights(); }, 250); });
+        
+        initializePage();
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.anim-stagger').forEach(elem => gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%', toggleActions: 'play none none none', }, opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' }));
+        
+        document.querySelectorAll('.collapse-toggle').forEach(button => button.addEventListener('click', (event) => {
+            const targetId = button.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            if (!isMobile && observer) observer.disconnect();
+            const isCurrentlyOpen = button.getAttribute('data-open') === 'true';
+            if (isCurrentlyOpen) {
+                content.style.maxHeight = '0px';
+                button.setAttribute('data-open', 'false');
+                button.querySelector('i').style.transform = 'rotate(0deg)';
+            } else {
+                document.querySelectorAll('#product-details-sections .collapse-toggle').forEach(btn => {
+                    const otherContent = document.getElementById(btn.getAttribute('data-target'));
+                    otherContent.style.maxHeight = '0px';
+                    btn.setAttribute('data-open', 'false');
+                    btn.querySelector('i').style.transform = 'rotate(0deg)';
+                });
+                content.style.maxHeight = content.scrollHeight + 'px';
+                button.setAttribute('data-open', 'true');
+                button.querySelector('i').style.transform = 'rotate(180deg)';
+            }
+            setTimeout(() => { if (!isMobile) { syncHeights(); if (observer) observer.observe(contentCard, { attributes: true, childList: true, subtree: true }); } }, 500);
+        }));
+        
+        const formHTML = `<div id="wikd-form-container" data-product-title="Mclaren 570S 540C 570GT 3.8L Twin-Turbocharged V8 Titanium Downpipe 2015+ (Brushed Purple)" class="bg-gray-900/50 border border-gray-800 clip-path-data-section p-6 md:p-8 w-full max-w-2xl mx-auto font-sans text-white"><style>#wikd-form-container .loader{border-top-color:var(--color-primary);animation:wikd-spin 1s linear infinite}@keyframes wikd-spin{to{transform:rotate(360deg)}}#wikd-form-container input,#wikd-form-container select{background-color:#1a1a1a;border-color:#3a3a3a;color:#eaeaea}#wikd-form-container input::placeholder{color:#888}#wikd-form-container input:focus,#wikd-form-container select:focus{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary);outline:none}#wikd-form-container select:disabled{background-color:#333;cursor:not-allowed}</style><h1 id="form-title" class="text-2xl font-bold mb-2 font-heading uppercase">Submit Your Interest</h1><p id="form-subtitle" class="text-gray-400 mb-6">Fill out the form below to be notified.</p><form id="interest-form"><div class="hidden mb-4"><input type="hidden" id="primary-product-id" name="primaryProductId"><input type="hidden" id="primary-product-title" name="primaryProductTitle"></div><div id="additional-product-section" class="mb-4"><label for="product-select" class="block text-sm font-semibold text-gray-400 mb-2">Add Other Products (Optional)</label><div class="flex gap-2"><select id="product-select" class="block w-full px-4 py-3 rounded-md shadow-sm"><option value="" disabled selected>Loading...</option></select><button type="button" id="add-product-button" class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-md transition whitespace-nowrap">Add +</button></div><div id="added-products-list" class="mt-4 space-y-2"></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="first-name" class="block text-sm font-semibold text-gray-400 mb-2">First Name</label><input type="text" id="first-name" name="firstName" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="John"></div><div><label for="last-name" class="block text-sm font-semibold text-gray-400 mb-2">Last Name</label><input type="text" id="last-name" name="lastName" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="Appleseed"></div><div><label for="email" class="block text-sm font-semibold text-gray-400 mb-2">Email Address</label><input type="email" id="email" name="email" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="john.appleseed@email.com"></div><div><label for="phone" class="block text-sm font-semibold text-gray-400 mb-2">Phone</label><input type="tel" id="phone" name="phone" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="(555) 123-4567"></div></div><div class="mt-6"><button type="submit" id="submit-button" class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition"><span id="button-text">Submit Inquiry</span><div id="button-loader" class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6 ml-3 hidden"></div></button></div></form><div id="status-message" class="mt-4 text-center text-sm"></div></div>`;
+        document.getElementById('wikd-interest-form').innerHTML = formHTML;
+
+        const waitlistButton = document.getElementById('waitlist-toggle-button');
+        const formCollapsibleContainer = document.getElementById('form-collapsible-container');
+        if (waitlistButton) {
+            waitlistButton.addEventListener('click', () => {
+                isAnimatingForm = true;
+                if (observer) observer.disconnect();
+                const isOpen = formCollapsibleContainer.style.maxHeight && formCollapsibleContainer.style.maxHeight !== '0px';
+                formCollapsibleContainer.style.maxHeight = isOpen ? '0px' : formCollapsibleContainer.scrollHeight + 'px';
+                waitlistButton.querySelector('i').style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+                setTimeout(() => { if (!isMobile) { syncHeights(); if (observer) observer.observe(contentCard, { attributes: true, childList: true, subtree: true }); } isAnimatingForm = false; }, 700);
+            });
+            new ResizeObserver(() => { if(formCollapsibleContainer.style.maxHeight && formCollapsibleContainer.style.maxHeight !== '0px') formCollapsibleContainer.style.maxHeight = formCollapsibleContainer.scrollHeight + 'px'; }).observe(formCollapsibleContainer);
+        }
+
+        (() => {
+            if (document.getElementById('wikd-form-container').hasAttribute('data-js-initialized')) return;
+            document.getElementById('wikd-form-container').setAttribute('data-js-initialized', 'true');
+            const zapierWebhookUrl = 'https://hooks.zapier.com/hooks/catch/19421224/um1sdex/';
+            const form = document.getElementById('interest-form');
+            const productSelect = document.getElementById('product-select');
+            const statusMessage = document.getElementById('status-message');
+            const submitButton = document.getElementById('submit-button');
+            const buttonText = document.getElementById('button-text');
+            const buttonLoader = document.getElementById('button-loader');
+            let addedProducts = [];
+            const addProductButton = document.getElementById('add-product-button');
+            const addedProductsList = document.getElementById('added-products-list');
+            
+            function renderAddedProducts() {
+                addedProductsList.innerHTML = addedProducts.length === 0 ? '<p class="text-sm text-gray-500 px-2">No additional products added.</p>' : addedProducts.map((p, i) => `<div class="flex justify-between items-center bg-gray-800 p-2 rounded-md"><span class="text-gray-300">${p.title}</span><button type="button" data-index="${i}" class="remove-product-button text-red-500 hover:text-red-400 text-2xl leading-none px-2">&times;</button></div>`).join('');
+                document.querySelectorAll('.remove-product-button').forEach(b => b.addEventListener('click', (e) => { const i = parseInt(e.currentTarget.dataset.index, 10); const p = addedProducts.splice(i, 1)[0]; const o = productSelect.querySelector(`option[value="${p.id}"]`); if (o) o.disabled = false; renderAddedProducts(); }));
+            }
+
+            if (addProductButton) addProductButton.addEventListener('click', () => { const o = productSelect.options[productSelect.selectedIndex]; if (!o || !o.value) return; if (addedProducts.some(p => p.id === o.value)) return; addedProducts.push({ id: o.value, title: o.textContent }); o.disabled = true; productSelect.selectedIndex = 0; renderAddedProducts(); });
+            
+            async function initializeProducts() {
+                try {
+                    const res = await fetch(productsUrl);
+                    const data = await res.json();
+                    const allProducts = data.shop;
+                    document.getElementById('primary-product-title').value = "Mclaren 570S 540C 570GT 3.8L Twin-Turbocharged V8 Titanium Downpipe 2015+ (Brushed Purple)";
+                    document.getElementById('primary-product-id').value = primaryProductId;
+                    productSelect.innerHTML = '<option value="">Select a product...</option>';
+                    allProducts.forEach(p => { if (p.id === primaryProductId) return; const o = document.createElement('option'); o.value = p.id; o.textContent = p.title; productSelect.appendChild(o); });
+                    renderAddedProducts();
+                } catch (e) { console.error(e); productSelect.innerHTML = '<option disabled>Could not load products</option>'; }
+            }
+
+            async function handleFormSubmit(event) {
+                event.preventDefault();
+                setLoading(true);
+                const data = Object.fromEntries(new FormData(form).entries());
+                data.additionalProducts = JSON.stringify(addedProducts);
+                try {
+                    await fetch(zapierWebhookUrl, { method: 'POST', body: JSON.stringify(data) });
+                    statusMessage.innerHTML = `<p class="text-green-500 font-semibold">Thank you! Your inquiry has been submitted.</p>`;
+                    form.reset();
+                    addedProducts = [];
+                    productSelect.querySelectorAll('option').forEach(o => o.disabled = false);
+                    renderAddedProducts();
+                } catch (e) { statusMessage.innerHTML = `<p class="text-red-500">Sorry, there was an error. Please try again.</p>`; } 
+                finally { setLoading(false); }
+            }
+            function setLoading(isLoading) { if (submitButton) { submitButton.disabled = isLoading; buttonText.classList.toggle('hidden', isLoading); buttonLoader.classList.toggle('hidden', !isLoading); } }
+            
+            initializeProducts();
+            form.addEventListener('submit', handleFormSubmit);
+        })();
+    });
+    </script>
+</body>
+</html>
