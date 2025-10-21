@@ -348,28 +348,20 @@
         </div>
     </div>
 
-    <!-- NEW: Related Products Section -->
-    <section class="py-8 bg-[#080808]"> <!-- Darker Background for Contrast -->
-        <!-- Wrapper for static content to maintain fixed side padding -->
+    <!-- <section class="py-8 bg-[#080808]">
         <div class="px-4 sm:px-6 lg:px-24">
             <h2 class="text-4xl font-bold uppercase font-heading text-white mb-8 border-b border-gray-800 pb-4">Related Products</h2>
         </div>
         
-        <!-- Outer Wrapper for Clipping, Arrows, and Hover (Now full viewport width) -->
         <div id="relatedProductsScrollWrapper" class="relative overflow-hidden cursor-default">
             
-            <!-- Scrollable Container (Now includes padding for content alignment) -->
             <div id="relatedProductsContainer" class="flex flex-nowrap space-x-6 pb-10 w-max will-change-transform px-4 sm:px-6 lg:px-24">
-                <!-- Related product cards will be injected here by JS -->
                 <div class="text-gray-500 min-w-full text-center py-10 w-full">Loading related products...</div>
             </div>
             
-            <!-- Horizontal Gradient Overlays - Updated for NARROWER, more abrupt shadow -->
-            <!-- These are positioned absolutely across the full width, covering the scroll edges -->
             <div class="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
             <div class="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
 
-            <!-- Navigation Arrows - Positioned relative to the padded content/viewport edge -->
             <button id="related-prev" class="absolute left-4 sm:left-6 lg:left-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 transition text-white text-2xl flex items-center justify-center shadow-lg opacity-80 hover:opacity-100 disabled:opacity-30 disabled:pointer-events-none">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -378,7 +370,7 @@
             </button>
             
         </div>
-    </section>
+    </section> -->
 
     <!-- Lightbox (Z-index updated to sit above everything) -->
     <div id="lightbox" class="fixed top-0 left-0 w-full h-full bg-black/90 z-[120] flex justify-center items-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
