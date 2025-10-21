@@ -421,7 +421,12 @@
         ];
         // --- END MANUALLY ADDED PACKAGE ENTRIES ---
         
-        // Removed: productLinkMap is deleted as requested.
+        const productLinkMap = {
+            "Corvette C8 Titanium Catback 2020+": "https://www.wikdmotorsports.com/pages/c8-catback-2020",
+            "Mclaren 570S/540C/570GT 3.8L V8 Titanium Downpipe": "https://www.wikdmotorsports.com/pages/570-downpipes",
+            "Lamborghini Huracan EVO/STO 5.2 V10 Titanium Catback With Muffler": "https://www.wikdmotorsports.com/pages/huracan-exhaust-with-muffler",
+            "Lamborghini Huracan EVO/STO 5.2 V10 Titanium Catback": "https://www.wikdmotorsports.com/pages/huracan-exhaust-no-muffler",
+        };
 
         // Utility to get the raw RGBA string for a given make
         function getMakeColorRgba(make) {
@@ -466,7 +471,7 @@
                     .filter(item => !titlesToRemove.includes(item.title)) // Filter out obsolete listings
                     .map(item => {
                         // --- FIX: Use the link directly from the JSON item, fall back to Shopify slug if link is empty or missing ---
-                        let link = item.link || '#product-detail';
+                        let link = productLinkMap[item.title] || item.link || '#product-detail';
 
                         // --- NEW LOGIC: RENAME CONSOLIDATED MCLAREN TIPS ENTRY ---
                         if (item.title === '570S & 720S Titanium Exhaust Tips (Inner Purple Finish)') {
