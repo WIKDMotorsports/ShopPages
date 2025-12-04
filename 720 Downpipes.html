@@ -179,6 +179,13 @@
             display: none;
         }
         
+        /* Custom height for 3D embed card */
+        .image-ticker-card.media-3d {
+            height: 650px; /* Match iframe height */
+            cursor: default; /* Not clickable for lightbox */
+            padding: 0;
+        }
+
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -205,12 +212,26 @@
             <div id="tickerWrapper" class="ticker-wrapper hidden lg:block">
                 <div class="gradient-overlay-top"></div>
                 <div id="tickerInner" class="ticker-inner">
-                    <!-- Gallery items for McLaren 720S Downpipe -->
+                    <!-- Gallery items for McLaren 720S Downpipe (Images) -->
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4559_f71fde06-0135-4c14-9064-d85084463868.jpg?v=1734125231&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4559_f71fde06-0135-4c14-9064-d85084463868.jpg?v=1734125231&width=1000" alt="McLaren 720S Downpipe Image 1" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4660_67fd7852-cd6f-4d21-aac0-13db4efd51eb.jpg?v=1734125231&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4660_67fd7852-cd6f-4d21-aac0-13db4efd51eb.jpg?v=1734125231&width=1000" alt="McLaren 720S Downpipe Image 2" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4661_4835fa8d-5cb5-42d3-8bd6-f45f6bde8f69.jpg?v=1734125231&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4661_4835fa8d-5cb5-42d3-8bd6-f45f6bde8f69.jpg?v=1734125231&width=1000" alt="McLaren 720S Downpipe Image 3" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4662_d7135ae7-0012-4072-b9ae-2f6011613b0d.jpg?v=1734125231&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4662_d7135ae7-0012-4072-b9ae-2f6011613b0d.jpg?v=1734125231&width=1000" alt="McLaren 720S Downpipe Image 4" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4664_3fbf7299-2c52-4f86-8486-2690cc763f1c.jpg?v=1734125231&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4664_3fbf7299-2c52-4f86-8486-2690cc763f1c.jpg?v=1734125231&width=1000" alt="McLaren 720S Downpipe Image 5" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    
+                    <!-- NEW: 3D EMBED ENTRY - LAZY LOADING REMOVED, RELYING ON JS FOR IMMEDIATE INJECTION + SCROLL ANIMATION -->
+                    <div class="image-ticker-card media-3d bg-gray-900/75 border border-gray-800" id="3d-embed-card">
+                        <div class="w-full h-full flex flex-col items-center justify-center text-center p-4">
+                            <i class="fas fa-cube text-6xl mb-4" style="color: var(--color-primary);"></i>
+                            <div class="text-2xl font-heading uppercase text-white font-bold">
+                                Interactive 3D Model
+                            </div>
+                            <!-- Removed 'Loading on scroll...' as it loads immediately now -->
+                            <div class="mt-2 text-sm text-gray-500">PlayCanvas Embed</div>
+                        </div>
+                    </div>
+                    <!-- END NEW ENTRY -->
+                    
                     <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4675_f7886b57-03c1-4f30-8ac2-c77e3efefc49.jpg?v=1734125231&width=1000" data-src="https://www.wikdmotorsports.com/cdn/shop/files/IMG_4675_f7886b57-03c1-4f30-8ac2-c77e3efefc49.jpg?v=1734125231&width=1000" alt="McLaren 720S Downpipe Image 6" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
                 </div>
                 <div class="gradient-overlay-bottom"></div>
@@ -269,9 +290,9 @@
                             </button>
                             <div id="collapse-craft" class="collapse-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
                                 <div class="pb-4 text-gray-300 space-y-3">
-                                     <p>Crafted from large-diameter 3” 1.2mm DOM titanium tubing, these downpipes dramatically reduce exhaust restrictions, allowing for faster turbo spool, increased boost potential, and enhanced throttle response. The smooth flared transition from the turbocharger ensures optimal flow characteristics, minimizing turbulence while maximizing efficiency.</p>
-                                     <p>Designed with the highly desirable pie-cut aesthetic, each downpipe is precision laser-welded for uncompromising strength and flawless fitment. Finished in our signature Brushed Purple heat treatment, these downpipes not only deliver exceptional durability under extreme conditions but also provide a striking motorsport-inspired visual appeal.</p>
-                                     <p>By eliminating the factory catalytic converters, this system amplifies the raw aggression of the 720S, unleashing an exhilarating, high-pitched supercar scream while deepening the V8’s menacing tone at idle. When paired with our free-flowing titanium cat-back system, the full power potential of the M840T engine is realized, creating an unparalleled auditory and performance experience.</p>
+                                    <p>Crafted from large-diameter 3” 1.2mm DOM titanium tubing, these downpipes dramatically reduce exhaust restrictions, allowing for faster turbo spool, increased boost potential, and enhanced throttle response. The smooth flared transition from the turbocharger ensures optimal flow characteristics, minimizing turbulence while maximizing efficiency.</p>
+                                    <p>Designed with the highly desirable pie-cut aesthetic, each downpipe is precision laser-welded for uncompromising strength and flawless fitment. Finished in our signature Brushed Purple heat treatment, these downpipes not only deliver exceptional durability under extreme conditions but also provide a striking motorsport-inspired visual appeal.</p>
+                                    <p>By eliminating the factory catalytic converters, this system amplifies the raw aggression of the 720S, unleashing an exhilarating, high-pitched supercar scream while deepening the V8’s menacing tone at idle. When paired with our free-flowing titanium cat-back system, the full power potential of the M840T engine is realized, creating an unparalleled auditory and performance experience.</p>
                                 </div>
                             </div>
                         </div>
@@ -348,10 +369,28 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         
-        const originalItems = Array.from(document.querySelectorAll('#tickerInner .image-ticker-card img')).map(img => ({
-            type: 'image',
-            src: img.getAttribute('data-src')
-        })).filter(item => item.src);
+        // --- START: GALLERY ITEM DEFINITION (Updated to include 3D embed) ---
+        let allGalleryItems = [];
+        const updateGalleryItems = () => {
+            const imageItems = Array.from(document.querySelectorAll('#tickerInner .image-ticker-card:not(.media-3d) img')).map(img => ({
+                type: 'image',
+                src: img.getAttribute('data-src') || img.src,
+                alt: img.alt
+            }));
+
+            // The 3D embed is hardcoded with its properties
+            const embedItem = {
+                type: '3d-embed',
+                src: 'https://playcanv.as/b/7ae24e57?noui',
+                alt: 'McLaren 720S Downpipe 3D Model'
+            };
+
+            // Reconstruct the order based on the HTML
+            allGalleryItems = [...imageItems.slice(0, 5), embedItem, ...imageItems.slice(5)];
+        };
+        // Run once now
+        updateGalleryItems();
+        // --- END: GALLERY ITEM DEFINITION ---
 
 
         let currentIndex = 0;
@@ -397,10 +436,9 @@
                 });
                 setTimeout(() => {
                     const firstCard = originalCards[0];
-                    const cardWidth = firstCard ? firstCard.offsetWidth : 0; 
-                    if (cardWidth === 0) return;
-                    const spaceX = 24; 
-                    const requiredWidth = (originalCards.length * 2 * cardWidth) + ((originalCards.length * 2 - 1) * spaceX);
+                    const cardWidth = firstCard ? firstCard.offsetWidth + 24 : 324; // Width + margin
+                    if (cardWidth === 24) return;
+                    const requiredWidth = originalCards.length * 2 * cardWidth;
                     relatedProductsContainer.style.width = `${requiredWidth}px`;
                     if (relatedProductsContainer.scrollWidth / 2 > relatedProductsWrapper.clientWidth) {
                         startContinuousScroll();
@@ -462,17 +500,26 @@
             }
         }
 
+        // Only handle images in the lightbox
         const showLightboxItem = (index) => {
-            currentIndex = (index + originalItems.length) % originalItems.length;
-            lightboxImg.src = originalItems[currentIndex].src;
+            const imageItems = allGalleryItems.filter(item => item.type === 'image');
+            if (imageItems.length === 0) return;
+            currentIndex = (index + imageItems.length) % imageItems.length;
+            lightboxImg.src = imageItems[currentIndex].src;
             lightbox.classList.remove('opacity-0', 'pointer-events-none');
         };
         
         const setupLightboxListeners = (selector) => {
             document.querySelectorAll(selector).forEach((item, index) => {
+                // Check if the item is the 3D embed card and skip it
+                if (item.classList.contains('media-3d')) return; 
+
                 const newItem = item.cloneNode(true);
                 item.parentNode.replaceChild(newItem, item);
-                newItem.addEventListener('click', () => showLightboxItem(index % originalItems.length));
+                // Map the overall index back to the image-only index
+                const imageIndex = allGalleryItems.filter((_, i) => i <= index && allGalleryItems[i].type === 'image').length - 1;
+
+                newItem.addEventListener('click', () => showLightboxItem(imageIndex));
             });
         };
         
@@ -489,10 +536,25 @@
             if (desktopTickerAnimation) desktopTickerAnimation.kill();
             const mobileTickerInner = document.getElementById('mobileTickerInner');
             if (mobileTickerInner.children.length > 0) return;
-            mobileTickerInner.innerHTML = originalItems.map(item => `<div class="mobile-gallery-item h-full flex-shrink-0 mr-4"><img src="${item.src}" class="h-full w-auto object-cover rounded-md"></div>`).join('');
+            
+            // Re-render mobile ticker using allGalleryItems including the new embed
+            mobileTickerInner.innerHTML = allGalleryItems.map(item => {
+                if (item.type === 'image') {
+                    return `<div class="mobile-gallery-item h-full flex-shrink-0 mr-4 cursor-pointer"><img src="${item.src}" class="h-full w-auto object-cover rounded-md"></div>`;
+                } else if (item.type === '3d-embed') {
+                    // Load the iframe immediately for the mobile view
+                    return `<div class="mobile-gallery-item h-full flex-shrink-0 mr-4 w-[65vw] min-w-[65vw] flex items-center justify-center bg-gray-900/75 border border-gray-800 rounded-md">
+                                <iframe src="${item.src}" width="100%" height="100%" frameborder="0" allowfullscreen title="${item.alt}" class="rounded-md" style="min-width: 100%; height: 100%; max-height: 100%;"></iframe>
+                            </div>`;
+                }
+            }).join('');
+            
             const items = mobileTickerInner.querySelectorAll('.mobile-gallery-item');
+            // Clone items for continuous scroll effect
             items.forEach(item => mobileTickerInner.appendChild(item.cloneNode(true)));
-            setupLightboxListeners('.mobile-gallery-item');
+            
+            setupLightboxListeners('#mobileTickerInner .mobile-gallery-item:not([data-type="3d-embed"])'); // Only images are in lightbox
+            
             gsap.set(mobileTickerInner, {x: 0});
             mobileTickerAnimation = gsap.to(mobileTickerInner, { x: '-50%', duration: 40, ease: 'none', repeat: -1 });
             setTimeout(() => window.scrollTo({ top: document.getElementById('mobileGalleryWrapper').offsetHeight * 0.85, behavior: 'smooth' }), 100);
@@ -502,21 +564,54 @@
             if (mobileTickerAnimation) mobileTickerAnimation.kill();
             const tickerWrapper = document.getElementById('tickerWrapper');
             const tickerInner = document.getElementById('tickerInner');
-            if (tickerInner.querySelectorAll('.cloned').length > 0) return;
+            const embedCard = document.getElementById('3d-embed-card');
+            
+            // Clone images for continuous scroll
             const originalTickerItems = tickerInner.querySelectorAll('.image-ticker-card:not(.cloned)');
             if (originalTickerItems.length > 0) {
-                 originalTickerItems.forEach(item => tickerInner.appendChild(item.cloneNode(true)));
+                 originalTickerItems.forEach(item => {
+                    if (!item.classList.contains('media-3d')) { // Don't clone the 3D card
+                         tickerInner.appendChild(item.cloneNode(true));
+                    }
+                 });
             }
+            
             syncHeights();
             window.addEventListener('resize', syncHeights);
             observer = new MutationObserver(syncHeights);
             observer.observe(contentCard, { attributes: true, childList: true, subtree: true });
+            
+            // --- MODIFIED: Immediate Load and Scroll-Triggered Fade-In ---
+            if (embedCard) {
+                // 1. Immediately load the 3D content to ensure it's fully loaded when it scrolls into view
+                const item = allGalleryItems.find(item => item.type === '3d-embed');
+                const iframeHtml = `<iframe src="${item.src}" width="100%" height="650" frameborder="0" allowfullscreen title="${item.alt}" class="rounded-lg shadow-xl" style="height: 650px; min-height: 100%; display: block;"></iframe>`;
+                embedCard.innerHTML = iframeHtml;
+                
+                // 2. Set up ScrollTrigger for the visual entrance (float-in effect)
+                // We use gsap.from which sets initial state (opacity: 0, y: 50) and animates to final (opacity: 1, y: 0)
+                gsap.from(embedCard, { 
+                    scrollTrigger: { 
+                        trigger: embedCard, 
+                        scroller: tickerWrapper, // Use the vertical scroller element
+                        start: 'top 90%', // Start animation when card top is 90% down the scroller
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1.0, 
+                    ease: 'power3.out' 
+                });
+            }
+            // --- End Modified Logic ---
+
             let isHovering = false;
             tickerWrapper.addEventListener('mouseenter', () => isHovering = true);
             tickerWrapper.addEventListener('mouseleave', () => isHovering = false);
             function animateScroll() {
                 if (!isHovering && tickerWrapper) {
                     tickerWrapper.scrollTop += 0.5;
+                    // Check if we've scrolled past the first set of items (half of total items)
                     if (tickerWrapper.scrollTop >= tickerInner.offsetHeight / 2) tickerWrapper.scrollTop = 0;
                 }
                 desktopTickerAnimation = requestAnimationFrame(animateScroll);
@@ -538,6 +633,7 @@
         initializePage();
 
         gsap.registerPlugin(ScrollTrigger);
+        // This targets elements on the main window scroll (not the ticker)
         gsap.utils.toArray('.anim-stagger').forEach(elem => gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%', toggleActions: 'play none none none', }, opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' }));
         
         document.querySelectorAll('.collapse-toggle').forEach(button => button.addEventListener('click', (event) => {
