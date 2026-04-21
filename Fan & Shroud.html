@@ -211,27 +211,27 @@
                         <section class="anim-stagger">
                             <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
                                 <button onclick="selectVariant(0)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
-                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">C7 Complete</span>
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] text-center">C7 Package</span>
                                 </button>
                                 <button onclick="selectVariant(1)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
-                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Univ. Complete</span>
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] text-center">Univ. W/ Shroud</span>
                                 </button>
                                 <button onclick="selectVariant(2)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
-                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Fan Only</span>
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] text-center">Univ. Package</span>
                                 </button>
                                 <button onclick="selectVariant(3)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
-                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Controller</span>
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] text-center">Fan Only</span>
                                 </button>
-                                <!-- Centered 5th button -->
-                                <button onclick="selectVariant(4)" class="variant-btn col-span-2 sm:col-span-1 sm:col-start-1 sm:col-end-3 sm:w-[calc(50%-0.5rem)] sm:mx-auto group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
-                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Wiring Harness</span>
+                                <!-- 5th button naturally in left column -->
+                                <button onclick="selectVariant(4)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] text-center">Accessory Pkg</span>
                                 </button>
                             </div>
 
-                            <!-- Master Checkout Button -->
-                            <a id="checkout-btn" href="#" class="w-full flex justify-center items-center px-5 py-5 mt-6 rounded-sm font-bold uppercase font-heading transition-all duration-300 text-neutral-600 bg-[#0A0A0A] border border-neutral-800 pointer-events-none opacity-50 no-underline">
-                                <span id="checkout-text" class="text-xl sm:text-2xl tracking-widest">Select A Package</span>
-                                <i class="fas fa-shopping-cart ml-4 text-lg"></i>
+                            <!-- Master Checkout Button kept centered -->
+                            <a id="checkout-btn" href="#" class="mx-auto w-full max-w-[calc(50%-0.375rem)] sm:max-w-[calc(50%-0.5rem)] flex justify-center items-center py-4 px-2 mt-4 rounded-sm transition-all duration-300 text-neutral-600 bg-[#0A0A0A] border border-neutral-800 pointer-events-none no-underline">
+                                <span id="checkout-text" class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] font-heading text-center">Select A Package</span>
+                                <i class="fas fa-shopping-cart ml-2 text-[11px] sm:text-xs opacity-70 flex-shrink-0"></i>
                             </a>
                         </section>
 
@@ -245,7 +245,7 @@
                                 <div id="collapse-Breakdowns" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
                                     <div class="pb-6 space-y-6 pt-2">
                                         <div>
-                                            <p class="text-lg font-bold text-white mb-2">C7 Complete Package</p>
+                                            <p class="text-lg font-bold text-white mb-2">C7 Package</p>
                                             <ul class="space-y-1 text-gray-300">
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Fan & Shroud For C7 Corvettes</li>
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
@@ -253,7 +253,7 @@
                                             </ul>
                                         </div>
                                         <div>
-                                            <p class="text-lg font-bold text-white mb-2">Universal Complete Package</p>
+                                            <p class="text-lg font-bold text-white mb-2">Universal Package W/ Shroud</p>
                                             <ul class="space-y-1 text-gray-300">
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan & Shroud</li>
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
@@ -261,13 +261,21 @@
                                             </ul>
                                         </div>
                                         <div>
-                                            <p class="text-lg font-bold text-white mb-2">Fan Package</p>
+                                            <p class="text-lg font-bold text-white mb-2">Universal Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Fan Only</p>
                                             <ul class="space-y-1 text-gray-300">
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan Only</li>
                                             </ul>
                                         </div>
                                         <div>
-                                            <p class="text-lg font-bold text-white mb-2">Accessories</p>
+                                            <p class="text-lg font-bold text-white mb-2">Accessory Package</p>
                                             <ul class="space-y-1 text-gray-300">
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
                                                 <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
@@ -355,11 +363,11 @@
     <script>
     // Data structure linking buttons, info, cart URLs, and images (mapped to the 5 new images in indices 4-8)
     const productVariants = [
-        { name: 'C7 Complete', price: '$899.99', sub: 'C7 COMPLETE PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=50822265536725&quantity=1&return_to=/cart', imgIndex: 4 },
-        { name: 'Universal Complete', price: '$999.99', sub: 'UNIVERSAL COMPLETE PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53066340237525&quantity=1&return_to=/cart', imgIndex: 5 },
-        { name: 'Universal Fan Only', price: '$699.00', sub: 'UNIVERSAL FAN ONLY', url: 'https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart', imgIndex: 6 },
-        { name: 'Manual Controller', price: '$99.99', sub: 'MANUAL CONTROLLER', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658461397&quantity=1&return_to=/cart', imgIndex: 7 },
-        { name: 'Wiring Harness', price: '$99.99', sub: 'WIRING HARNESS', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658494165&quantity=1&return_to=/cart', imgIndex: 8 }
+        { name: 'C7 Package', price: '$899.99', sub: 'C7 PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=50822265536725&quantity=1&return_to=/cart', imgIndex: 4 },
+        { name: 'Universal W/ Shroud', price: '$999.99', sub: 'UNIVERSAL PACKAGE W/ SHROUD', url: 'https://www.wikdmotorsports.com/cart/add?id=53066340237525&quantity=1&return_to=/cart', imgIndex: 5 },
+        { name: 'Universal Package', price: '$899.99', sub: 'UNIVERSAL PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart', imgIndex: 8 },
+        { name: 'Fan Only', price: '$699.00', sub: 'FAN ONLY', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658461397&quantity=1&return_to=/cart', imgIndex: 6 },
+        { name: 'Accessory Package', price: '$99.99', sub: 'ACCESSORY PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658494165&quantity=1&return_to=/cart', imgIndex: 7 }
     ];
 
     // Global selection function triggered by clicking a package
@@ -382,9 +390,9 @@
         const checkoutBtn = document.getElementById('checkout-btn');
         const checkoutText = document.getElementById('checkout-text');
         checkoutBtn.href = v.url;
-        checkoutText.innerText = `Add ${v.name} to Cart`;
-        checkoutBtn.classList.remove('pointer-events-none', 'text-neutral-600', 'bg-[#0A0A0A]', 'border-neutral-800', 'opacity-50');
-        checkoutBtn.classList.add('lava-outline', 'text-white', 'hover:-translate-y-1', 'bg-black', 'border-transparent');
+        checkoutText.innerText = `Add To Cart`;
+        // Constrained width permanently injected on click
+        checkoutBtn.className = 'mx-auto w-full max-w-[calc(50%-0.375rem)] sm:max-w-[calc(50%-0.5rem)] flex justify-center items-center py-4 px-2 mt-4 rounded-sm transition-all duration-300 no-underline bg-[#FF3B30] text-white hover:bg-[#D63028] cursor-pointer';
 
         // 3. Highlight Selected Package Button
         document.querySelectorAll('.variant-btn').forEach((btn, i) => {
@@ -431,6 +439,7 @@
         let mobileTickerAnim;
         let isMobile = window.innerWidth < 1024;
         let isInteracting = false;
+        let resumeScrollTimeout;
 
         // Smooth Scroll Logic for clicking variants
         window.scrollToGalleryImage = function(imgIndex) {
@@ -445,17 +454,26 @@
 
             let targetProgress = 0;
             if (isMobile) {
-                // Calculate position relative to the 1st block of duplicated images
+                // Calculate position to perfectly center the image horizontally
                 const blockWidth = inner.scrollWidth / 2;
-                targetProgress = targetEl.offsetLeft / blockWidth;
+                const wrapperWidth = wrapper.clientWidth;
+                const elWidth = targetEl.clientWidth;
+                const offset = (wrapperWidth - elWidth) / 2;
+                targetProgress = (targetEl.offsetLeft - offset) / blockWidth;
             } else {
+                // Calculate position to perfectly center the image vertically
                 const blockHeight = inner.scrollHeight / 2;
-                targetProgress = targetEl.offsetTop / blockHeight;
+                const visibleHeight = Math.min(wrapper.clientHeight, window.innerHeight - 32); // accounts for top: 2rem sticky offset
+                const elHeight = targetEl.clientHeight;
+                const offset = (visibleHeight - elHeight) / 2;
+                targetProgress = (targetEl.offsetTop - offset) / blockHeight;
             }
 
             anim.pause();
+            clearTimeout(resumeScrollTimeout);
+            
             let currentP = anim.progress();
-            let diff = targetProgress - currentP;
+            let diff = (targetProgress - currentP) % 1;
             
             // Traverse the shortest path on the infinite loop
             if (diff > 0.5) diff -= 1;
@@ -464,18 +482,20 @@
             let pObj = { p: currentP };
             gsap.to(pObj, {
                 p: currentP + diff,
-                duration: 0.8,
-                ease: "power2.inOut",
+                duration: 1.2,
+                ease: "power3.inOut",
                 onUpdate: () => {
                     let wrappedP = pObj.p % 1;
                     if (wrappedP < 0) wrappedP += 1;
                     anim.progress(wrappedP);
                 },
                 onComplete: () => {
-                    // Resume looping if not hovered or touched
-                    if (!isInteracting && !wrapper.matches(':hover')) {
-                        anim.play();
-                    }
+                    // Pause for 2.5 seconds to let the user admire the highlighted package
+                    resumeScrollTimeout = setTimeout(() => {
+                        if (!isInteracting && !wrapper.matches(':hover')) {
+                            anim.play();
+                        }
+                    }, 2500);
                 }
             });
         };
