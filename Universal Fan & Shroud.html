@@ -2,8 +2,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WIKD Motorsports - Universal 18in Fan & Shroud</title>
-
+    <title>WIKD - Universal 18in Fan & Shroud</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -11,30 +11,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Custom styles to complement Tailwind */
         :root {
-            --color-primary: #9370DB; /* Purple Heat theme */
+            --color-primary: #FF3B30;
         }
-
-        /* FIX: Ensure HTML/Body fill the space and cover any external injection artifacts */
+        
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
             background-color: #0A0A0A;
+            color: #EAEAEA;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0A0A0A;
-            color: #EAEAEA;
-            -ms-overflow-style: none;
             scrollbar-width: none;
         }
         body::-webkit-scrollbar {
@@ -44,85 +38,102 @@
             font-family: 'Rajdhani', sans-serif;
         }
         .lava-gradient-text {
-            background: linear-gradient(90deg, #483d8b, #9370db, #ee82ee, #9370db, #483d8b);
+            background: linear-gradient(90deg, #C70039, #FF3B30, #FF5733, #FF3B30, #C70039);
             background-size: 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: lavaFlow 5s ease-in-out infinite;
+            animation: lavaFlow 4.2s ease-in-out infinite;
+            animation-delay: 0.3s;
         }
         .lava-gradient-bg {
-            background: linear-gradient(90deg, #483d8b, #9370db, #ee82ee, #9370db, #483d8b);
+            background: linear-gradient(90deg, #C70039, #FF3B30, #FF5733, #FF3B30, #C70039);
             background-size: 300%;
-            animation: lavaFlow 5s ease-in-out infinite;
+            animation: lavaFlow 5.7s ease-in-out infinite;
         }
+        
+        /* Outline effect - highly controlled stacking */
+        .lava-outline {
+            position: relative;
+            background: transparent;
+            color: inherit;
+            z-index: 1; 
+        }
+        .lava-outline::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 2px; /* outline thickness */
+            border-radius: inherit;
+            z-index: 10;
+            background: linear-gradient(
+                90deg,
+                #C70039,
+                #FF3B30,
+                #FF5733,
+                #FF3B30,
+                #C70039
+            );
+            background-size: 300%;
+            animation: lavaFlow 5.7s ease-in-out infinite;
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            pointer-events: none;
+        }
+
         @keyframes lavaFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* --- CLIP PATHS --- */
+
         .clip-path-custom {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 97%);
         }
-        .clip-path-data-section {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0 95%);
-        }
-
-        /* -- THEME COLOR CORRECTION -- */
-        *:focus-visible {
-            outline: 2px solid var(--color-primary) !important;
-            outline-offset: 2px;
-        }
-        .mods-list li::before, .mods-section ul li::before {
-            content: '■';
-            color: var(--color-primary);
-            margin-right: 0.75rem;
-            font-size: 0.8em;
-        }
-
-        /* --- DESKTOP VERTICAL TICKER --- */
+        
+        /* Desktop Ticker Wrapper */
         .ticker-wrapper {
-            position: relative;
-            flex-shrink: 0;
+            position: sticky;
+            top: 2rem;
             width: 100%;
             max-width: 40rem;
-            overflow-y: scroll;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .ticker-wrapper::-webkit-scrollbar {
-            display: none;
-        }
-        .image-ticker-card {
-            width: 100%;
-            height: auto;
-            margin-bottom: 2rem;
-            border-radius: 0.5rem;
+            height: 1200px;
             overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-        .image-ticker-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease-in-out;
-        }
-        .image-ticker-card:hover img {
-            transform: scale(1.03);
+            z-index: 20;
         }
         .ticker-inner {
             display: flex;
             flex-direction: column;
             will-change: transform;
         }
+        .image-ticker-card {
+            width: 100%;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background-color: #0A0A0A; /* Ensures transparent renders have a solid dark base */
+        }
+        .image-ticker-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .image-ticker-card:hover img {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
         .gradient-overlay-top, .gradient-overlay-bottom {
-            position: sticky;
+            position: absolute;
             left: 0;
             width: 100%;
-            height: 10rem;
+            height: 12rem;
             pointer-events: none;
-            z-index: 10;
+            z-index: 30;
         }
         .gradient-overlay-top {
             top: 0;
@@ -133,509 +144,531 @@
             background: linear-gradient(to top, #0A0A0A, rgba(10, 10, 10, 0));
         }
 
-        /* --- HERO & PARALLAX (Desktop Only) --- */
         .build-hero {
             position: relative;
-            padding: 0;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow: visible;
         }
-        .parallax-img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            mix-blend-mode: screen;
-            opacity: 0.4;
-            z-index: 2;
-        }
-        .build-hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 70%);
-            z-index: 4;
+            padding: 2rem 1rem;
         }
 
-        #ultra-stealth-patch {
-            width: 10px;
-            height: 10px;
-            background-color: #0A0A0A;
-            z-index: 100;
-            position: fixed;
-            top: 0;
-            left: 0;
+        @media (min-width: 1024px) {
+            .hero-container {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 4rem;
+                padding: 6rem 2rem;
+                max-width: 1600px;
+                margin: 0 auto;
+            }
         }
-
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <div id="ultra-stealth-patch"></div>
-
-    <div id="mobileGalleryWrapper" class="lg:hidden fixed top-0 left-0 w-full h-[45vh] z-[110] overflow-hidden">
-        <div id="mobileTickerInner" class="flex h-full will-change-transform">
-            <!-- Mobile gallery items will be populated by JS -->
-        </div>
-        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
+    <div id="mobileGalleryWrapper" class="lg:hidden relative w-full h-[40vh] overflow-hidden">
+        <div id="mobileTickerInner" class="flex h-full will-change-transform"></div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none z-10"></div>
     </div>
 
     <div class="build-hero">
-        <img src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=800"
-            data-src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=800"
-            onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"
-            alt="Universal 18in Fan & Shroud"
-            class="parallax-img hidden lg:block"
-        />
-
-        <div class="relative z-10 flex flex-col lg:flex-row justify-end lg:justify-center items-end lg:items-start lg:min-h-screen lg:p-24 lg:gap-12">
-
-            <div id="tickerWrapper" class="ticker-wrapper hidden lg:block">
+        <div class="hero-container">
+            <!-- Left: Scrolling Ticker (Sticky) -->
+            <div id="tickerWrapper" class="ticker-wrapper hidden lg:block lg:flex-shrink-0">
                 <div class="gradient-overlay-top"></div>
                 <div id="tickerInner" class="ticker-inner">
-                    <!-- Gallery items for Universal 18in Fan & Shroud -->
-                    <div class="image-ticker-card"><img src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=800" data-src="https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=800" alt="Universal 18in Fan & Shroud Image 1" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII';"></div>
+                    <!-- Images injected here -->
                 </div>
                 <div class="gradient-overlay-bottom"></div>
             </div>
+            
+            <!-- Right: Content Card (Fluid Height) -->
+            <main id="contentCard" class="w-full lg:w-[650px] lg:flex-shrink-0 bg-black/80 border border-gray-800 shadow-2xl lg:clip-path-custom flex flex-col mt-4 lg:mt-0 relative">
+                <div class="px-6 py-8 md:px-10 md:py-12">
+                    <header class="mb-8">
+                        <h1 class="text-4xl md:text-6xl font-bold uppercase font-heading text-white">WIKD C7 Cooling Fan</h1>
+                        <div class="flex justify-between items-baseline mt-2">
+                            <h2 id="main-subtitle" class="text-xl font-heading text-gray-400 uppercase tracking-wider transition-all duration-300">18-INCH SHROUD KIT</h2>
+                            <div class="text-right">
+                                <span id="main-price" class="text-2xl font-bold font-heading text-white transition-all duration-500">From $699</span>
+                                <span class="text-gray-400 ml-1 font-heading">USD</span>
+                            </div>
+                        </div>
+                        <div class="h-1 w-full lava-gradient-bg mt-6"></div>
+                    </header>
 
-            <main id="contentCard" class="relative z-20 w-full lg:w-1/2 max-w-4xl bg-[#0A0A0A] lg:bg-black/75 border-t border-gray-800 lg:border-t-0 lg:border border-gray-800 shadow-2xl lg:clip-path-custom flex flex-col mt-[45vh] lg:mt-0">
+                    <div class="space-y-12">
+                        <!-- Variant Selectors & Add to Cart -->
+                        <section class="anim-stagger">
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+                                <button onclick="selectVariant(0)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">C7 Complete</span>
+                                </button>
+                                <button onclick="selectVariant(1)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Univ. Complete</span>
+                                </button>
+                                <button onclick="selectVariant(2)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Fan Only</span>
+                                </button>
+                                <button onclick="selectVariant(3)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Controller</span>
+                                </button>
+                                <!-- Centered 5th button -->
+                                <button onclick="selectVariant(4)" class="variant-btn col-span-2 sm:col-span-1 sm:col-start-1 sm:col-end-3 sm:w-[calc(50%-0.5rem)] sm:mx-auto group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Wiring Harness</span>
+                                </button>
+                            </div>
 
-                <header class="flex flex-col gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 lg:px-8 lg:py-6">
-                    <div class="w-full">
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase font-heading lava-gradient-text whitespace-nowrap">Universal 18in Fan & Shroud</h1>
+                            <!-- Master Checkout Button -->
+                            <a id="checkout-btn" href="#" target="_blank" class="w-full flex justify-center items-center px-5 py-5 mt-6 rounded-sm font-bold uppercase font-heading transition-all duration-300 text-neutral-600 bg-[#0A0A0A] border border-neutral-800 pointer-events-none opacity-50 no-underline">
+                                <span id="checkout-text" class="text-xl sm:text-2xl tracking-widest">Select A Package</span>
+                                <i class="fas fa-shopping-cart ml-4 text-lg"></i>
+                            </a>
+                        </section>
+
+                        <!-- Product Details Accordion -->
+                        <section id="product-details-sections" class="anim-stagger">
+                            <div class="border-b border-gray-800">
+                                <button type="button" class="collapse-toggle w-full flex justify-between items-center py-5 text-left text-xl font-semibold uppercase font-heading text-white hover:text-red-400 transition" data-target="collapse-Breakdowns" data-open="false">
+                                    Package Breakdowns
+                                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                                </button>
+                                <div id="collapse-Breakdowns" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
+                                    <div class="pb-6 space-y-6 pt-2">
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">C7 Complete Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Fan & Shroud For C7 Corvettes</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Universal Complete Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan & Shroud</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Fan Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan Only</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Accessories</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-800">
+                                <button type="button" class="collapse-toggle w-full flex justify-between items-center py-5 text-left text-xl font-semibold uppercase font-heading text-white hover:text-red-400 transition" data-target="collapse-overview" data-open="true">
+                                    Overview
+                                    <i class="fas fa-chevron-down transition-transform duration-300 transform rotate-180"></i>
+                                </button>
+                                <div id="collapse-overview" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: fit-content;">
+                                    <p class="pb-6 text-gray-300 text-lg leading-relaxed">Engineered specifically for the C7 Corvette to withstand the most extreme conditions, this is the highest CFM-rated cooling fan on the market. Tested and proven in the unforgiving Texas summer heat, this powerhouse ensures maximum airflow for high-performance C7 builds. Pair it with our programmable speed controller for complete control over your cooling performance.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-800">
+                                <button type="button" class="collapse-toggle w-full flex justify-between items-center py-5 text-left text-xl font-semibold uppercase font-heading text-white hover:text-red-400 transition" data-target="collapse-design" data-open="false">
+                                    Aerodynamic Design
+                                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                                </button>
+                                <div id="collapse-design" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
+                                    <div class="pb-6 text-gray-300 space-y-6 text-lg pt-2">
+                                        <p>Precision-engineered pitch and optimized twist angle maximize airflow while minimizing air buffeting noise.</p>
+                                        <p>Driven by an 850-watt high-torque motor drawing only 52 amps at full duty cycle. Heavy-duty 8AWG wiring ensures reliability.</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-4 border-t border-gray-800">
+                                            <a href="https://raw.githubusercontent.com/WIKDMotorsports/ShopPages/main/Fan_Dimensioned_Drawing_Holes_Template.pdf" download target="_blank" class="w-full flex flex-col items-center text-center p-3 rounded-md font-bold uppercase font-heading transition-all duration-300 text-white border border-zinc-700 bg-zinc-900 hover:border-red-500 shadow-lg hover:shadow-[0_0_15px_rgba(255,59,48,0.4)] no-underline mt-2">
+                                                <span class="text-lg mb-1">Schematic Diagram</span>
+                                                <span class="text-2xl text-red-500">Download PDF</span>
+                                            </a>
+                                            <p class="text-sm text-gray-400 mt-2">Download a vector PDF version of the fan's dimensioned drawing and a template of mounting holes for installation of shroudless kits</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div class="border-b border-gray-800">
+                                <button type="button" class="collapse-toggle w-full flex justify-between items-center py-5 text-left text-xl font-semibold uppercase font-heading text-white hover:text-red-400 transition" data-target="collapse-build" data-open="false">
+                                    Rugged Construction
+                                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                                </button>
+                                <div id="collapse-build" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
+                                    <p class="pb-6 pt-2 text-gray-300 text-lg">Architecturally reinforced aluminum shroud finished in WIKD Satin Black, precision-engineered for C7 Corvette fitment. Features integrated pressure relief flaps to optimize cooling at highway speeds.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Features -->
+                        <section class="anim-stagger">
+                            <div class="mods-section">
+                                <h3 class="text-3xl font-bold uppercase font-heading border-b border-gray-800 pb-3 mb-6">Key Features</h3>
+                                <ul class="space-y-3 text-gray-300 text-lg">
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Industry-Leading CFM Output</li>
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> 18" Precision Blade Design</li>
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> 850-Watt High-Torque Motor</li>
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Heavy-Duty 8AWG Wiring</li>
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Reinforced Aluminum Shroud</li>
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Pressure Relief Flaps</li>
+                                    <li class="flex items-center"><span class="text-red-500 mr-3">■</span> WIKD Satin Black Finish</li>
+                                </ul>
+                            </div>
+                        </section>
                     </div>
-                    <div class="w-full flex justify-between items-baseline">
-                        <h2 class="text-base sm:text-lg md:text-xl font-heading text-white whitespace-nowrap uppercase">Universal Fitment (Performance Applications)</h2>
-                        <div class="text-right">
-                            <span class="text-base sm:text-lg md:text-xl font-bold font-heading whitespace-nowrap" style="color: var(--color-primary);">$99.99</span>
-                            <span class="text-sm sm:text-base md:text-lg font-heading whitespace-nowrap text-gray-400 ml-1">USD</span>
-                        </div>
-                    </div>
-                </header>
-
-                <div class="h-1 w-full lava-gradient-bg"></div>
-
-                <div class="px-4 sm:px-5 md:px-6 lg:px-8 pt-6 sm:pt-8 lg:pb-10">
-
-                    <section class="anim-stagger mb-10">
-                        <button id="waitlist-toggle-button" class="w-full flex justify-between items-center text-left p-4 rounded-md text-xl font-bold uppercase font-heading transition-all duration-300 lava-gradient-bg text-black shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-purple-400">
-                            <span>Join The Waitlist</span>
-                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                        </button>
-                        <div id="form-collapsible-container" class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out">
-                            <div class="pt-6">
-                                <div id="wikd-interest-form">
-                                    <!-- FORM WILL BE INJECTED HERE -->
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="product-details-sections" class="anim-stagger mb-10">
-                        <div class="border-b border-gray-800">
-                            <button type="button" class="collapse-toggle w-full flex justify-between items-center py-4 text-left text-lg font-semibold uppercase font-heading text-white hover:text-purple-400 transition" data-target="collapse-overview" data-open="true">
-                                Overview: High-Performance Cooling Solution
-                                <i class="fas fa-chevron-down transition-transform duration-300 transform rotate-180"></i>
-                            </button>
-                            <div id="collapse-overview" class="collapse-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: fit-content;">
-                                <div class="pb-4 text-gray-300 space-y-3">
-                                    <p>Engineered for versatility and performance, the WIKD Motorsports Universal 18-inch Fan & Shroud is the ultimate cooling solution for custom and racing applications. Its compact design and powerful airflow provide the necessary cooling to keep your engine running at optimal temperatures, no matter the conditions.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-b border-gray-800">
-                            <button type="button" class="collapse-toggle w-full flex justify-between items-center py-4 text-left text-lg font-semibold uppercase font-heading text-white hover:text-purple-400 transition" data-target="collapse-craft" data-open="false">
-                                Compact & Efficient Design
-                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                            </button>
-                            <div id="collapse-craft" class="collapse-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
-                                <div class="pb-4 text-gray-300 space-y-3">
-                                    <p>The slim profile of the fan and shroud assembly allows for easy installation in tight engine bays, making it an ideal choice for custom builds where space is at a premium. Despite its compact size, the high-flow fan delivers exceptional cooling performance, ensuring your engine stays cool under pressure.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                         <div class="border-b border-gray-800">
-                            <button type="button" class="collapse-toggle w-full flex justify-between items-center py-4 text-left text-lg font-semibold uppercase font-heading text-white hover:text-purple-400 transition" data-target="collapse-sound" data-open="false">
-                                Universal Application
-                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                            </button>
-                            <div id="collapse-sound" class="collapse-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
-                                <div class="pb-4 text-gray-300 space-y-3">
-                                     <p>Designed for universal fitment, this fan and shroud kit is perfect for a wide range of performance applications, from street rods to dedicated track cars. Its robust construction ensures long-lasting reliability, even in the most demanding environments.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="mt-10 anim-stagger">
-                        <div class="mods-section">
-                            <h3 class="text-3xl font-bold uppercase font-heading border-b border-gray-800 pb-2 mb-4">Key Features</h3>
-                            <div class="mt-4 space-y-6">
-                                <div>
-                                    <ul class="mt-4 space-y-2 text-gray-300 text-lg">
-                                        <li>18-inch High-Flow Fan</li>
-                                        <li>Durable and Lightweight Shroud</li>
-                                        <li>Compact, Slim Profile</li>
-                                        <li>Universal Fitment</li>
-                                        <li>Ideal for Custom and Racing Applications</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
                 </div>
             </main>
         </div>
     </div>
 
-    <section class="py-8 bg-[#080808]">
-        <div class="px-4 sm:px-6 lg:px-24">
-            <h2 class="text-4xl font-bold uppercase font-heading text-white mb-8 border-b border-gray-800 pb-4">Related Products</h2>
-        </div>
-
-        <div id="relatedProductsScrollWrapper" class="relative overflow-hidden cursor-default">
-
-            <div id="relatedProductsContainer" class="flex flex-nowrap space-x-6 pb-10 w-max will-change-transform px-4 sm:px-6 lg:px-24">
-                <div class="text-gray-500 min-w-full text-center py-10 w-full">Loading related products...</div>
-            </div>
-
-            <div class="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
-            <div class="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
-
-            <button id="related-prev" class="absolute left-4 sm:left-6 lg:left-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 transition text-white text-2xl flex items-center justify-center shadow-lg opacity-80 hover:opacity-100 disabled:opacity-30 disabled:pointer-events-none">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button id="related-next" class="absolute right-4 sm:right-6 lg:right-24 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 transition text-white text-2xl flex items-center justify-center shadow-lg opacity-80 hover:opacity-100 disabled:opacity-30 disabled:pointer-events-none">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-
-        </div>
-    </section>
-
-    <div id="lightbox" class="fixed top-0 left-0 w-full h-full bg-black/90 z-[120] flex justify-center items-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="relative max-w-4xl max-h-full">
-            <button class="lightbox-close absolute -top-10 right-0 text-white text-4xl transition-colors hover:text-purple-400">&times;</button>
-            <button class="lightbox-prev absolute top-1/2 -left-4 sm:-left-12 text-white text-4xl -translate-y-1/2 transition-colors hover:text-purple-400">&lt;</button>
-            <button class="lightbox-next absolute top-1/2 -right-4 sm:-right-12 text-white text-4xl -translate-y-1/2 transition-colors hover:text-purple-400">&gt;</button>
-            <img src="" alt="Lightbox image" id="lightboxImg" class="max-w-full max-h-[90vh] rounded-lg">
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed top-0 left-0 w-full h-full bg-black/95 z-[150] flex justify-center items-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative max-w-5xl w-full flex justify-center">
+            <button class="lightbox-close absolute -top-12 right-0 text-white text-5xl hover:text-red-500">&times;</button>
+            <button class="lightbox-prev absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl p-4 hover:text-red-500"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-next absolute right-0 top-1/2 -translate-y-1/2 text-white text-4xl p-4 hover:text-red-500"><i class="fas fa-chevron-right"></i></button>
+            <img src="" id="lightboxImg" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl">
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+    
     <script>
+    // Data structure linking buttons, info, cart URLs, and images (mapped to the 5 new images in indices 4-8)
+    const productVariants = [
+        { name: 'C7 Complete', price: '$899.99', sub: 'C7 COMPLETE PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=50822265536725&quantity=1&return_to=/cart', imgIndex: 4 },
+        { name: 'Universal Complete', price: '$999.99', sub: 'UNIVERSAL COMPLETE PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53066340237525&quantity=1&return_to=/cart', imgIndex: 5 },
+        { name: 'Universal Fan Only', price: '$699.00', sub: 'UNIVERSAL FAN ONLY', url: 'https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart', imgIndex: 6 },
+        { name: 'Manual Controller', price: '$99.99', sub: 'MANUAL CONTROLLER', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658461397&quantity=1&return_to=/cart', imgIndex: 7 },
+        { name: 'Wiring Harness', price: '$99.99', sub: 'WIRING HARNESS', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658494165&quantity=1&return_to=/cart', imgIndex: 8 }
+    ];
+
+    // Global selection function triggered by clicking a package
+    window.selectVariant = function(index) {
+        const v = productVariants[index];
+        
+        // 1. Update Title and Price Texts
+        const subtitleEl = document.getElementById('main-subtitle');
+        const priceEl = document.getElementById('main-price');
+        
+        subtitleEl.innerText = v.sub;
+        subtitleEl.classList.add('text-white');
+        subtitleEl.classList.remove('text-gray-400');
+        
+        priceEl.innerText = v.price;
+        priceEl.classList.add('lava-gradient-text');
+        priceEl.classList.remove('text-white');
+
+        // 2. Activate Checkout Button
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutText = document.getElementById('checkout-text');
+        checkoutBtn.href = v.url;
+        checkoutText.innerText = `Add ${v.name} to Cart`;
+        checkoutBtn.classList.remove('pointer-events-none', 'text-neutral-600', 'bg-[#0A0A0A]', 'border-neutral-800', 'opacity-50');
+        checkoutBtn.classList.add('lava-outline', 'text-white', 'hover:-translate-y-1', 'bg-black', 'border-transparent');
+
+        // 3. Highlight Selected Package Button
+        document.querySelectorAll('.variant-btn').forEach((btn, i) => {
+            if(i === index) {
+                btn.classList.add('lava-outline', 'text-white', 'border-transparent', 'bg-neutral-900/50');
+                btn.classList.remove('text-neutral-500', 'border-neutral-800', 'bg-[#0A0A0A]');
+            } else {
+                btn.classList.remove('lava-outline', 'text-white', 'border-transparent', 'bg-neutral-900/50');
+                btn.classList.add('text-neutral-500', 'border-neutral-800', 'bg-[#0A0A0A]');
+            }
+        });
+
+        // 4. Highlight Image in Gallery Ticker
+        document.querySelectorAll('.img-target').forEach(imgContainer => {
+            if(parseInt(imgContainer.dataset.imgIndex) === v.imgIndex) {
+                imgContainer.classList.add('lava-outline');
+            } else {
+                imgContainer.classList.remove('lava-outline');
+            }
+        });
+
+        // 5. Scroll to corresponding image smoothly
+        if (window.scrollToGalleryImage) {
+            window.scrollToGalleryImage(v.imgIndex);
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
-
-        function mod(n, m) { return ((n % m) + m) % m; }
-
-        const contentCard = document.getElementById('contentCard');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-
-        const originalItems = Array.from(document.querySelectorAll('#tickerInner .image-ticker-card img')).map(img => ({
-            type: 'image',
-            src: img.getAttribute('data-src')
-        })).filter(item => item.src);
-
+        // Combined Array: 4 Old + 5 New Images
+        const galleryItems = [
+            { src: 'https://cdn.shopify.com/s/files/1/0671/4635/0805/files/DSC07228.jpg?v=1735251043' },
+            { src: 'https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=1000' },
+            { src: 'https://www.wikdmotorsports.com/cdn/shop/files/dsc08216_1.jpg?v=1734036302&width=1000' },
+            { src: 'https://github.com/WIKDMotorsports/ShopPages/blob/main/Fan_Dimensioned_Drawing.png?raw=true' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/C7Package.webp?v=1770912589' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage_2.webp?v=1770912631' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/FanOnly.webp?v=1770912640' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/Accessories.webp?v=1770912648' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage.webp?v=1770912662' }
+        ];
 
         let currentIndex = 0;
-        let desktopTickerAnimation;
-        let mobileTickerAnimation;
+        let desktopTickerAnim;
+        let mobileTickerAnim;
         let isMobile = window.innerWidth < 1024;
-        let observer;
-        let isAnimatingForm = false;
+        let isInteracting = false;
 
-        const syncHeights = () => {
-            if (isAnimatingForm) return;
-            const tickerWrapper = document.getElementById('tickerWrapper');
-            if (contentCard && tickerWrapper && !isMobile) {
-                tickerWrapper.style.height = `${contentCard.offsetHeight}px`;
+        // Smooth Scroll Logic for clicking variants
+        window.scrollToGalleryImage = function(imgIndex) {
+            const anim = isMobile ? mobileTickerAnim : desktopTickerAnim;
+            const wrapper = isMobile ? document.getElementById('mobileGalleryWrapper') : document.getElementById('tickerWrapper');
+            const inner = isMobile ? document.getElementById('mobileTickerInner') : document.getElementById('tickerInner');
+            
+            if (!anim || !inner) return;
+
+            const targetEl = inner.querySelector(`[data-img-index="${imgIndex}"]`);
+            if (!targetEl) return;
+
+            let targetProgress = 0;
+            if (isMobile) {
+                // Calculate position relative to the 1st block of duplicated images
+                const blockWidth = inner.scrollWidth / 2;
+                targetProgress = targetEl.offsetLeft / blockWidth;
+            } else {
+                const blockHeight = inner.scrollHeight / 2;
+                targetProgress = targetEl.offsetTop / blockHeight;
             }
+
+            anim.pause();
+            let currentP = anim.progress();
+            let diff = targetProgress - currentP;
+            
+            // Traverse the shortest path on the infinite loop
+            if (diff > 0.5) diff -= 1;
+            if (diff < -0.5) diff += 1;
+            
+            let pObj = { p: currentP };
+            gsap.to(pObj, {
+                p: currentP + diff,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onUpdate: () => {
+                    let wrappedP = pObj.p % 1;
+                    if (wrappedP < 0) wrappedP += 1;
+                    anim.progress(wrappedP);
+                },
+                onComplete: () => {
+                    // Resume looping if not hovered or touched
+                    if (!isInteracting && !wrapper.matches(':hover')) {
+                        anim.play();
+                    }
+                }
+            });
         };
 
-        const productsUrl = 'https://cdn.shopify.com/s/files/1/0671/4635/0805/files/shoponly.json?v=1760970186';
-        const primaryProductId = 'universal-fan-shroud';
-
-        const relatedProductsContainer = document.getElementById('relatedProductsContainer');
-        const relatedProductsWrapper = document.getElementById('relatedProductsScrollWrapper');
-        const relatedPrev = document.getElementById('related-prev');
-        const relatedNext = document.getElementById('related-next');
-        let relatedProductsAnimation;
-
-        function startContinuousScroll() {
-            if (relatedProductsAnimation) relatedProductsAnimation.kill();
-            const scrollDistance = relatedProductsContainer.scrollWidth / 2;
-            const speedFactor = 25;
-            const scrollDuration = scrollDistance / speedFactor;
-            gsap.set(relatedProductsContainer, { x: 0 });
-            relatedProductsAnimation = gsap.to(relatedProductsContainer, { x: -scrollDistance, duration: scrollDuration, ease: "none", repeat: -1, modifiers: { x: x => (parseFloat(x) % scrollDistance) + 'px' } });
-        }
-
-        function cloneAndStartScroll() {
-            const originalCards = relatedProductsContainer.querySelectorAll('.related-product-card:not(.cloned)');
-            if (originalCards.length > 0 && relatedProductsContainer.querySelectorAll('.cloned').length === 0) {
-                originalCards.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    clone.classList.add('cloned');
-                    relatedProductsContainer.appendChild(clone);
-                });
-                setTimeout(() => {
-                    const firstCard = originalCards[0];
-                    const cardWidth = firstCard ? firstCard.offsetWidth : 0;
-                    if (cardWidth === 0) return;
-                    const spaceX = 24;
-                    const requiredWidth = (originalCards.length * 2 * cardWidth) + ((originalCards.length * 2 - 1) * spaceX);
-                    relatedProductsContainer.style.width = `${requiredWidth}px`;
-                    if (relatedProductsContainer.scrollWidth / 2 > relatedProductsWrapper.clientWidth) {
-                        startContinuousScroll();
-                        setupRelatedScrollButtons();
-                    } else {
-                        relatedPrev.style.display = 'none';
-                        relatedNext.style.display = 'none';
-                    }
-                }, 100);
-            }
-            const relatedHoverIn = () => relatedProductsAnimation && relatedProductsAnimation.pause();
-            const relatedHoverOut = () => relatedProductsAnimation && relatedProductsAnimation.play();
-            if (relatedProductsWrapper) {
-                relatedProductsWrapper.addEventListener('mouseenter', relatedHoverIn);
-                relatedProductsWrapper.addEventListener('mouseleave', relatedHoverOut);
-            }
-        }
-
-        function setupRelatedScrollButtons() {
-            relatedPrev.addEventListener('click', (e) => manualScroll('prev', e));
-            relatedNext.addEventListener('click', (e) => manualScroll('next', e));
-        }
-
-        function manualScroll(direction) {
-            if (!relatedProductsAnimation || relatedPrev.disabled || relatedNext.disabled) return;
-            relatedPrev.disabled = true;
-            relatedNext.disabled = true;
-            relatedProductsAnimation.pause();
-            const firstCard = relatedProductsContainer.querySelector('.related-product-card');
-            const scrollAmount = firstCard ? firstCard.offsetWidth + 24 : 300;
-            const stepDuration = (scrollAmount / (relatedProductsContainer.scrollWidth / 2)) * relatedProductsAnimation.duration();
-            let targetTime = direction === 'next' ? relatedProductsAnimation.time() + stepDuration : relatedProductsAnimation.time() - stepDuration;
-            const newTime = mod(targetTime, relatedProductsAnimation.duration());
-            gsap.to(relatedProductsAnimation, { time: newTime, duration: 0.5, ease: "power2.out", onComplete: () => { relatedProductsAnimation.play(); relatedPrev.disabled = false; relatedNext.disabled = false; } });
-        }
-
-        async function renderRelatedProducts() {
-            try {
-                const response = await fetch(productsUrl);
-                if (!response.ok) throw new Error('Failed to fetch products');
-                const data = await response.json();
-                if (data && Array.isArray(data.shop)) {
-                    const nonPrimaryProducts = data.shop.filter(p => p.id !== primaryProductId);
-                    const relevantProducts = nonPrimaryProducts.filter(p => p.categories.includes('universal'));
-                    let allProducts = relevantProducts.slice(0, 4);
-                    if (allProducts.length < 4) {
-                        allProducts.push(...nonPrimaryProducts.filter(p => !allProducts.includes(p)).slice(0, 4 - allProducts.length));
-                    }
-                    if (allProducts.length === 0) {
-                        relatedProductsContainer.innerHTML = '<p class="text-gray-500 text-center py-10 w-full">No other products available.</p>';
-                        return;
-                    }
-                    relatedProductsContainer.innerHTML = allProducts.map(p => `<a href="${p.link || '#'}" class="related-product-card flex-shrink-0 w-64 sm:w-80 p-4 rounded-xl bg-black/50 border border-gray-800 shadow-xl transition-all duration-300 hover:bg-black/75 hover:border-purple-500 block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400 z-30"><div class="h-40 overflow-hidden rounded-lg mb-4"><img src="${p.image?.src || ''}" onerror="this.src='https://placehold.co/800x600/1e293b/f8fafc?text=WIKD+Product'" alt="${p.image?.alt || p.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"></div><h3 class="text-xl font-bold font-heading text-white uppercase truncate">${p.title}</h3><p class="text-sm text-gray-400 mt-1">${p.categories.map(c => c.toUpperCase()).join(' / ')}</p><div class="mt-3 text-2xl font-bold font-heading" style="color: var(--color-primary);">${p.price ? `$${p.price.toFixed(2)}` : 'Inquire'}</div></a>`).join('');
-                    setTimeout(cloneAndStartScroll, 100);
-                }
-            } catch (error) {
-                console.error('Error rendering related products:', error);
-                relatedProductsContainer.innerHTML = `<p class="text-red-500 text-center py-10 w-full">Error loading data.</p>`;
-            }
-        }
-
-        const showLightboxItem = (index) => {
-            currentIndex = (index + originalItems.length) % originalItems.length;
-            lightboxImg.src = originalItems[currentIndex].src;
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const showImage = (index) => {
+            currentIndex = (index + galleryItems.length) % galleryItems.length;
+            lightboxImg.src = galleryItems[currentIndex].src;
             lightbox.classList.remove('opacity-0', 'pointer-events-none');
         };
-
-        const setupLightboxListeners = (selector) => {
-            document.querySelectorAll(selector).forEach((item, index) => {
-                const newItem = item.cloneNode(true);
-                item.parentNode.replaceChild(newItem, item);
-                newItem.addEventListener('click', () => showLightboxItem(index % originalItems.length));
-            });
-        };
-
         const closeLightbox = () => lightbox.classList.add('opacity-0', 'pointer-events-none');
+        document.querySelector('.lightbox-close').onclick = closeLightbox;
+        document.querySelector('.lightbox-prev').onclick = () => showImage(currentIndex - 1);
+        document.querySelector('.lightbox-next').onclick = () => showImage(currentIndex + 1);
 
-        if (lightbox) {
-            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-            document.querySelector('.lightbox-prev').addEventListener('click', () => showLightboxItem(currentIndex - 1));
-            document.querySelector('.lightbox-next').addEventListener('click', () => showLightboxItem(currentIndex + 1));
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lightbox.classList.contains('opacity-0')) closeLightbox(); });
-        }
-
-        function setupMobileView() {
-            if (desktopTickerAnimation) desktopTickerAnimation.kill();
-            const mobileTickerInner = document.getElementById('mobileTickerInner');
-            if (mobileTickerInner.children.length > 0) return;
-            mobileTickerInner.innerHTML = originalItems.map(item => `<div class="mobile-gallery-item h-full flex-shrink-0 mr-4"><img src="${item.src}" class="h-full w-auto object-cover rounded-md"></div>`).join('');
-            const items = mobileTickerInner.querySelectorAll('.mobile-gallery-item');
-            items.forEach(item => mobileTickerInner.appendChild(item.cloneNode(true)));
-            setupLightboxListeners('.mobile-gallery-item');
-            gsap.set(mobileTickerInner, {x: 0});
-            mobileTickerAnimation = gsap.to(mobileTickerInner, { x: '-50%', duration: 40, ease: 'none', repeat: -1 });
-            setTimeout(() => window.scrollTo({ top: document.getElementById('mobileGalleryWrapper').offsetHeight * 0.85, behavior: 'smooth' }), 100);
-        }
-
+        // Desktop Setup
         function setupDesktopView() {
-            if (mobileTickerAnimation) mobileTickerAnimation.kill();
-            const tickerWrapper = document.getElementById('tickerWrapper');
-            const tickerInner = document.getElementById('tickerInner');
-            if (tickerInner.querySelectorAll('.cloned').length > 0) return;
-            const originalTickerItems = tickerInner.querySelectorAll('.image-ticker-card:not(.cloned)');
-            if (originalTickerItems.length > 0) {
-                 originalTickerItems.forEach(item => tickerInner.appendChild(item.cloneNode(true)));
-            }
-            syncHeights();
-            window.addEventListener('resize', syncHeights);
-            observer = new MutationObserver(syncHeights);
-            observer.observe(contentCard, { attributes: true, childList: true, subtree: true });
-            let isHovering = false;
-            tickerWrapper.addEventListener('mouseenter', () => isHovering = true);
-            tickerWrapper.addEventListener('mouseleave', () => isHovering = false);
-            function animateScroll() {
-                if (!isHovering && tickerWrapper) {
-                    tickerWrapper.scrollTop += 0.5;
-                    if (tickerWrapper.scrollTop >= tickerInner.offsetHeight / 2) tickerWrapper.scrollTop = 0;
-                }
-                desktopTickerAnimation = requestAnimationFrame(animateScroll);
-            }
-            animateScroll();
-            setupLightboxListeners('.image-ticker-card');
-        }
+            const inner = document.getElementById('tickerInner');
+            if (!inner) return;
+            const content = galleryItems.map((item, idx) => `
+                <div class="image-ticker-card img-target relative transition-all duration-500 cursor-grab active:cursor-grabbing" data-img-index="${idx}">
+                    <img src="${item.src}" data-src="${item.src}" alt="Gallery Image" class="block w-full h-auto relative z-0 pointer-events-none">
+                </div>
+            `).join('');
+            inner.innerHTML = `<div class="ticker-block">${content}</div><div class="ticker-block">${content}</div>`;
+            
+            desktopTickerAnim = gsap.to(inner, { yPercent: -50, duration: 40, ease: "none", repeat: -1 });
+            const wrapper = document.getElementById('tickerWrapper');
+            
+            let isDragging = false;
+            let startY = 0;
+            let startProgress = 0;
+            let wasDragged = false;
 
-        function initializePage() {
-            isMobile = window.innerWidth < 1024;
-            if (isMobile) setupMobileView(); else setupDesktopView();
-            renderRelatedProducts();
-            const initialOpenContent = document.getElementById('collapse-overview');
-            if (initialOpenContent) setTimeout(() => { initialOpenContent.style.maxHeight = initialOpenContent.scrollHeight + 'px'; if (!isMobile) syncHeights(); }, 50);
-        }
-        let resizeTimer;
-        window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { const newIsMobile = window.innerWidth < 1024; if (newIsMobile !== isMobile) window.location.reload(); else if (!newIsMobile) syncHeights(); }, 250); });
-
-        initializePage();
-
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.anim-stagger').forEach(elem => gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%', toggleActions: 'play none none none', }, opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' }));
-
-        document.querySelectorAll('.collapse-toggle').forEach(button => button.addEventListener('click', (event) => {
-            const targetId = button.getAttribute('data-target');
-            const content = document.getElementById(targetId);
-            if (!isMobile && observer) observer.disconnect();
-            const isCurrentlyOpen = button.getAttribute('data-open') === 'true';
-            if (isCurrentlyOpen) {
-                content.style.maxHeight = '0px';
-                button.setAttribute('data-open', 'false');
-                button.querySelector('i').style.transform = 'rotate(0deg)';
-            } else {
-                document.querySelectorAll('#product-details-sections .collapse-toggle').forEach(btn => {
-                    const otherContent = document.getElementById(btn.getAttribute('data-target'));
-                    otherContent.style.maxHeight = '0px';
-                    btn.setAttribute('data-open', 'false');
-                    btn.querySelector('i').style.transform = 'rotate(0deg)';
-                });
-                content.style.maxHeight = content.scrollHeight + 'px';
-                button.setAttribute('data-open', 'true');
-                button.querySelector('i').style.transform = 'rotate(180deg)';
-            }
-            setTimeout(() => { if (!isMobile) { syncHeights(); if (observer) observer.observe(contentCard, { attributes: true, childList: true, subtree: true }); } }, 500);
-        }));
-
-        const formHTML = `<div id="wikd-form-container" data-product-title="WIKD Motorsports - Universal 18in Fan & Shroud" class="bg-gray-900/50 border border-gray-800 clip-path-data-section p-6 md:p-8 w-full max-w-2xl mx-auto font-sans text-white"><style>#wikd-form-container .loader{border-top-color:var(--color-primary);animation:wikd-spin 1s linear infinite}@keyframes wikd-spin{to{transform:rotate(360deg)}}#wikd-form-container input,#wikd-form-container select{background-color:#1a1a1a;border-color:#3a3a3a;color:#eaeaea}#wikd-form-container input::placeholder{color:#888}#wikd-form-container input:focus,#wikd-form-container select:focus{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary);outline:none}#wikd-form-container select:disabled{background-color:#333;cursor:not-allowed}</style><h1 id="form-title" class="text-2xl font-bold mb-2 font-heading uppercase">Submit Your Interest</h1><p id="form-subtitle" class="text-gray-400 mb-6">Fill out the form below to be notified.</p><form id="interest-form"><div class="hidden mb-4"><input type="hidden" id="primary-product-id" name="primaryProductId"><input type="hidden" id="primary-product-title" name="primaryProductTitle"></div><div id="additional-product-section" class="mb-4"><label for="product-select" class="block text-sm font-semibold text-gray-400 mb-2">Add Other Products (Optional)</label><div class="flex gap-2"><select id="product-select" class="block w-full px-4 py-3 rounded-md shadow-sm"><option value="" disabled selected>Loading...</option></select><button type="button" id="add-product-button" class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-md transition whitespace-nowrap">Add +</button></div><div id="added-products-list" class="mt-4 space-y-2"></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="first-name" class="block text-sm font-semibold text-gray-400 mb-2">First Name</label><input type="text" id="first-name" name="firstName" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="John"></div><div><label for="last-name" class="block text-sm font-semibold text-gray-400 mb-2">Last Name</label><input type="text" id="last-name" name="lastName" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="Appleseed"></div><div><label for="email" class="block text-sm font-semibold text-gray-400 mb-2">Email Address</label><input type="email" id="email" name="email" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="john.appleseed@email.com"></div><div><label for="phone" class="block text-sm font-semibold text-gray-400 mb-2">Phone</label><input type="tel" id="phone" name="phone" required class="block w-full px-4 py-3 rounded-md shadow-sm" placeholder="(555) 123-4567"></div></div><div class="mt-6"><button type="submit" id="submit-button" class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition"><span id="button-text">Submit Inquiry</span><div id="button-loader" class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6 ml-3 hidden"></div></button></div></form><div id="status-message" class="mt-4 text-center text-sm"></div></div>`;
-        document.getElementById('wikd-interest-form').innerHTML = formHTML;
-
-        const waitlistButton = document.getElementById('waitlist-toggle-button');
-        const formCollapsibleContainer = document.getElementById('form-collapsible-container');
-        if (waitlistButton) {
-            waitlistButton.addEventListener('click', () => {
-                isAnimatingForm = true;
-                if (observer) observer.disconnect();
-                const isOpen = formCollapsibleContainer.style.maxHeight && formCollapsibleContainer.style.maxHeight !== '0px';
-                formCollapsibleContainer.style.maxHeight = isOpen ? '0px' : formCollapsibleContainer.scrollHeight + 'px';
-                waitlistButton.querySelector('i').style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-                setTimeout(() => { if (!isMobile) { syncHeights(); if (observer) observer.observe(contentCard, { attributes: true, childList: true, subtree: true }); } isAnimatingForm = false; }, 700);
+            inner.querySelectorAll('.image-ticker-card').forEach((card) => {
+                card.onclick = (e) => {
+                    if (wasDragged) {
+                        e.preventDefault();
+                        return;
+                    }
+                    const src = card.querySelector('img').getAttribute('data-src');
+                    const idx = galleryItems.findIndex(i => i.src === src);
+                    showImage(idx);
+                };
             });
-            new ResizeObserver(() => { if(formCollapsibleContainer.style.maxHeight && formCollapsibleContainer.style.maxHeight !== '0px') formCollapsibleContainer.style.maxHeight = formCollapsibleContainer.scrollHeight + 'px'; }).observe(formCollapsibleContainer);
+
+            wrapper.onmouseenter = () => { isInteracting = true; if (!isDragging) desktopTickerAnim.pause(); };
+            wrapper.onmouseleave = () => { isInteracting = false; if (!isDragging) desktopTickerAnim.play(); };
+
+            // Wheel Scroll
+            wrapper.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                desktopTickerAnim.pause();
+                let delta = e.deltaY * 0.0005;
+                let newProgress = (desktopTickerAnim.progress() + delta) % 1;
+                if (newProgress < 0) newProgress += 1;
+                desktopTickerAnim.progress(newProgress);
+            }, {passive: false});
+
+            // Drag Scroll
+            wrapper.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                isInteracting = true;
+                wasDragged = false;
+                startY = e.clientY;
+                startProgress = desktopTickerAnim.progress();
+                desktopTickerAnim.pause();
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                let deltaY = startY - e.clientY;
+                if (Math.abs(deltaY) > 5) wasDragged = true;
+                let deltaProgress = deltaY * 0.0005;
+                let newProgress = (startProgress + deltaProgress) % 1;
+                if (newProgress < 0) newProgress += 1;
+                desktopTickerAnim.progress(newProgress);
+            });
+            window.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    isInteracting = false;
+                    if (!wrapper.matches(':hover')) desktopTickerAnim.play();
+                    setTimeout(() => wasDragged = false, 50);
+                }
+            });
         }
 
-        (() => {
-            if (document.getElementById('wikd-form-container').hasAttribute('data-js-initialized')) return;
-            document.getElementById('wikd-form-container').setAttribute('data-js-initialized', 'true');
-            const zapierWebhookUrl = 'https://hooks.zapier.com/hooks/catch/19421224/um1sdex/';
-            const form = document.getElementById('interest-form');
-            const productSelect = document.getElementById('product-select');
-            const statusMessage = document.getElementById('status-message');
-            const submitButton = document.getElementById('submit-button');
-            const buttonText = document.getElementById('button-text');
-            const buttonLoader = document.getElementById('button-loader');
-            let addedProducts = [];
-            const addProductButton = document.getElementById('add-product-button');
-            const addedProductsList = document.getElementById('added-products-list');
+        // Mobile Setup
+        function setupMobileView() {
+            const inner = document.getElementById('mobileTickerInner');
+            if (!inner) return;
+            const content = galleryItems.map((item, idx) => `
+                <div class="h-full flex-shrink-0 mr-4 cursor-grab active:cursor-grabbing img-target relative transition-all duration-500 rounded-[0.5rem] overflow-hidden bg-[#0A0A0A]" data-img-index="${idx}">
+                    <img src="${item.src}" class="h-full w-auto object-cover relative z-0 pointer-events-none">
+                </div>
+            `).join('');
+            inner.innerHTML = content + content;
+            
+            mobileTickerAnim = gsap.to(inner, { xPercent: -50, duration: 45, ease: 'none', repeat: -1 });
+            const wrapper = document.getElementById('mobileGalleryWrapper');
 
-            function renderAddedProducts() {
-                addedProductsList.innerHTML = addedProducts.length === 0 ? '<p class="text-sm text-gray-500 px-2">No additional products added.</p>' : addedProducts.map((p, i) => `<div class="flex justify-between items-center bg-gray-800 p-2 rounded-md"><span class="text-gray-300">${p.title}</span><button type="button" data-index="${i}" class="remove-product-button text-red-500 hover:text-red-400 text-2xl leading-none px-2">&times;</button></div>`).join('');
-                document.querySelectorAll('.remove-product-button').forEach(b => b.addEventListener('click', (e) => { const i = parseInt(e.currentTarget.dataset.index, 10); const p = addedProducts.splice(i, 1)[0]; const o = productSelect.querySelector(`option[value="${p.id}"]`); if (o) o.disabled = false; renderAddedProducts(); }));
-            }
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let startProgress = 0;
+            let wasDragged = false;
+            let swipeDir = null;
 
-            if (addProductButton) addProductButton.addEventListener('click', () => { const o = productSelect.options[productSelect.selectedIndex]; if (!o || !o.value) return; if (addedProducts.some(p => p.id === o.value)) return; addedProducts.push({ id: o.value, title: o.textContent }); o.disabled = true; productSelect.selectedIndex = 0; renderAddedProducts(); });
+            inner.querySelectorAll('div.img-target').forEach((div, i) => {
+                div.onclick = (e) => {
+                    if (wasDragged) {
+                        e.preventDefault();
+                        return;
+                    }
+                    showImage(i % galleryItems.length);
+                };
+            });
 
-            async function initializeProducts() {
-                try {
-                    const res = await fetch(productsUrl);
-                    const data = await res.json();
-                    const allProducts = data.shop;
-                    document.getElementById('primary-product-title').value = "WIKD Motorsports - Universal 18in Fan & Shroud";
-                    document.getElementById('primary-product-id').value = primaryProductId;
-                    productSelect.innerHTML = '<option value="">Select a product...</option>';
-                    allProducts.forEach(p => { if (p.id === primaryProductId) return; const o = document.createElement('option'); o.value = p.id; o.textContent = p.title; productSelect.appendChild(o); });
-                    renderAddedProducts();
-                } catch (e) { console.error(e); productSelect.innerHTML = '<option disabled>Could not load products</option>'; }
-            }
+            // Touch Scroll
+            wrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                isInteracting = true;
+                wasDragged = false;
+                swipeDir = null;
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startProgress = mobileTickerAnim.progress();
+                mobileTickerAnim.pause();
+            }, {passive: true});
 
-            async function handleFormSubmit(event) {
-                event.preventDefault();
-                setLoading(true);
-                const data = Object.fromEntries(new FormData(form).entries());
-                data.additionalProducts = JSON.stringify(addedProducts);
-                try {
-                    await fetch(zapierWebhookUrl, { method: 'POST', body: JSON.stringify(data) });
-                    statusMessage.innerHTML = `<p class="text-green-500 font-semibold">Thank you! Your inquiry has been submitted.</p>`;
-                    form.reset();
-                    addedProducts = [];
-                    productSelect.querySelectorAll('option').forEach(o => o.disabled = false);
-                    renderAddedProducts();
-                } catch (e) { statusMessage.innerHTML = `<p class="text-red-500">Sorry, there was an error. Please try again.</p>`; }
-                finally { setLoading(false); }
-            }
-            function setLoading(isLoading) { if (submitButton) { submitButton.disabled = isLoading; buttonText.classList.toggle('hidden', isLoading); buttonLoader.classList.toggle('hidden', !isLoading); } }
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                let currentX = e.touches[0].clientX;
+                let currentY = e.touches[0].clientY;
+                let deltaX = startX - currentX;
+                let deltaY = startY - currentY;
 
-            initializeProducts();
-            form.addEventListener('submit', handleFormSubmit);
-        })();
+                if (!swipeDir) {
+                    swipeDir = Math.abs(deltaX) > Math.abs(deltaY) ? 'h' : 'v';
+                }
+
+                if (swipeDir === 'h') {
+                    e.preventDefault(); // Stop vertical page scroll while swiping gallery
+                    if (Math.abs(deltaX) > 5) wasDragged = true;
+                    let deltaProgress = deltaX * 0.0005;
+                    let newProgress = (startProgress + deltaProgress) % 1;
+                    if (newProgress < 0) newProgress += 1;
+                    mobileTickerAnim.progress(newProgress);
+                }
+            }, {passive: false});
+
+            wrapper.addEventListener('touchend', () => {
+                isDragging = false;
+                isInteracting = false;
+                mobileTickerAnim.play();
+                setTimeout(() => wasDragged = false, 50);
+            });
+        }
+
+        // Accordion Logic
+        document.querySelectorAll('.collapse-toggle').forEach(btn => {
+            btn.onclick = () => {
+                const target = document.getElementById(btn.dataset.target);
+                const isOpen = btn.dataset.open === 'true';
+                document.querySelectorAll('.collapse-toggle').forEach(other => {
+                    if (other !== btn) {
+                        document.getElementById(other.dataset.target).style.maxHeight = '0px';
+                        other.dataset.open = 'false';
+                        other.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+                if (!isOpen) {
+                    target.style.maxHeight = target.scrollHeight + 'px';
+                    btn.dataset.open = 'true';
+                    btn.querySelector('i').style.transform = 'rotate(180deg)';
+                } else {
+                    target.style.maxHeight = '0px';
+                    btn.dataset.open = 'false';
+                    btn.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            };
+        });
+
+        if (isMobile) setupMobileView(); else setupDesktopView();
+        
+        // Entrance Animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.anim-stagger').forEach(elem => {
+            gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%' }, opacity: 0, y: 30, duration: 0.6 });
+        });
+
+        window.onresize = () => { if ((window.innerWidth < 1024) !== isMobile) window.location.reload(); };
     });
     </script>
 </body>
