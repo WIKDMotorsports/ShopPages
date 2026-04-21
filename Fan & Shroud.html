@@ -50,6 +50,39 @@
             background-size: 300%;
             animation: lavaFlow 5.7s ease-in-out infinite;
         }
+        
+        /* Outline effect - highly controlled stacking */
+        .lava-outline {
+            position: relative;
+            background: transparent;
+            color: inherit;
+            z-index: 1; 
+        }
+        .lava-outline::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 2px; /* outline thickness */
+            border-radius: inherit;
+            z-index: 10;
+            background: linear-gradient(
+                90deg,
+                #C70039,
+                #FF3B30,
+                #FF5733,
+                #FF3B30,
+                #C70039
+            );
+            background-size: 300%;
+            animation: lavaFlow 5.7s ease-in-out infinite;
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            pointer-events: none;
+        }
+
         @keyframes lavaFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -59,9 +92,6 @@
         .clip-path-custom {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 97%);
         }
-        .clip-path-data-section {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0 95%);
-        }
         
         /* Desktop Ticker Wrapper */
         .ticker-wrapper {
@@ -69,7 +99,7 @@
             top: 2rem;
             width: 100%;
             max-width: 40rem;
-            height: 1200px; /* Updated height for the content gallery */
+            height: 1200px;
             overflow: hidden;
             z-index: 20;
         }
@@ -84,6 +114,7 @@
             border-radius: 0.5rem;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background-color: #0A0A0A; /* Ensures transparent renders have a solid dark base */
         }
         .image-ticker-card img {
             width: 100%;
@@ -146,7 +177,7 @@
 
     <div id="mobileGalleryWrapper" class="lg:hidden relative w-full h-[40vh] overflow-hidden">
         <div id="mobileTickerInner" class="flex h-full will-change-transform"></div>
-        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none z-10"></div>
     </div>
 
     <div class="build-hero">
@@ -164,38 +195,88 @@
             <main id="contentCard" class="w-full lg:w-[650px] lg:flex-shrink-0 bg-black/80 border border-gray-800 shadow-2xl lg:clip-path-custom flex flex-col mt-4 lg:mt-0 relative">
                 <div class="px-6 py-8 md:px-10 md:py-12">
                     <header class="mb-8">
-                        <h1 class="text-4xl md:text-6xl font-bold uppercase font-heading lava-gradient-text">WIKD C7 Cooling Fan</h1>
+                        <h1 class="text-4xl md:text-6xl font-bold uppercase font-heading text-white">WIKD C7 Cooling Fan</h1>
                         <div class="flex justify-between items-baseline mt-2">
-                            <h2 class="text-xl font-heading text-white uppercase tracking-wider">18-INCH SHROUD KIT</h2>
+                            <h2 id="main-subtitle" class="text-xl font-heading text-gray-400 uppercase tracking-wider transition-all duration-300">18-INCH SHROUD KIT</h2>
                             <div class="text-right">
-                                <span class="text-2xl font-bold font-heading text-red-500">$1,099.99</span>
-                                <span class="text-gray-400 ml-1">USD</span>
+                                <span id="main-price" class="text-2xl font-bold font-heading text-white transition-all duration-500">From $699</span>
+                                <span class="text-gray-400 ml-1 font-heading">USD</span>
                             </div>
                         </div>
                         <div class="h-1 w-full lava-gradient-bg mt-6"></div>
                     </header>
 
                     <div class="space-y-12">
-                        <!-- CTA / Form -->
+                        <!-- Variant Selectors & Add to Cart -->
                         <section class="anim-stagger">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <a href="https://www.wikdmotorsports.com/cart/add?id=50822265536725&quantity=1&return_to=/cart" target="_blank" class="w-full flex flex-col items-center text-center p-3 rounded-md font-bold uppercase font-heading transition-all duration-300 lava-gradient-bg text-white shadow-lg hover:brightness-110 no-underline">
-                                    <span class="text-lg mb-1">Full Package</span>
-                                    <span class="text-2xl">$1,099.99</span>
-                                </a>
-                                <a href="https://www.wikdmotorsports.com/cart/add?id=53066340237525&quantity=1&return_to=/cart" target="_blank" class="w-full flex flex-col items-center text-center p-3 rounded-md font-bold uppercase font-heading transition-all duration-300 lava-gradient-bg text-white shadow-lg hover:brightness-110 no-underline">
-                                    <span class="text-lg mb-1">Fan & Shroud</span>
-                                    <span class="text-2xl">$799.99</span>
-                                </a>
-                                <a href="https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart" target="_blank" class="w-full flex flex-col items-center text-center p-3 rounded-md font-bold uppercase font-heading transition-all duration-300 lava-gradient-bg text-white shadow-lg hover:brightness-110 no-underline">
-                                    <span class="text-lg mb-1">Fan Controller</span>
-                                    <span class="text-2xl">$359.99</span>
-                                </a>
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+                                <button onclick="selectVariant(0)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">C7 Complete</span>
+                                </button>
+                                <button onclick="selectVariant(1)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Univ. Complete</span>
+                                </button>
+                                <button onclick="selectVariant(2)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Fan Only</span>
+                                </button>
+                                <button onclick="selectVariant(3)" class="variant-btn group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Controller</span>
+                                </button>
+                                <!-- Centered 5th button -->
+                                <button onclick="selectVariant(4)" class="variant-btn col-span-2 sm:col-span-1 sm:col-start-1 sm:col-end-3 sm:w-[calc(50%-0.5rem)] sm:mx-auto group relative w-full flex flex-col justify-center items-center py-4 px-2 rounded-sm font-heading transition-all duration-300 text-neutral-500 bg-[#0A0A0A] border border-neutral-800 hover:border-neutral-500 hover:text-neutral-200">
+                                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em]">Wiring Harness</span>
+                                </button>
                             </div>
+
+                            <!-- Master Checkout Button -->
+                            <a id="checkout-btn" href="#" target="_blank" class="w-full flex justify-center items-center px-5 py-5 mt-6 rounded-sm font-bold uppercase font-heading transition-all duration-300 text-neutral-600 bg-[#0A0A0A] border border-neutral-800 pointer-events-none opacity-50 no-underline">
+                                <span id="checkout-text" class="text-xl sm:text-2xl tracking-widest">Select A Package</span>
+                                <i class="fas fa-shopping-cart ml-4 text-lg"></i>
+                            </a>
                         </section>
 
                         <!-- Product Details Accordion -->
                         <section id="product-details-sections" class="anim-stagger">
+                            <div class="border-b border-gray-800">
+                                <button type="button" class="collapse-toggle w-full flex justify-between items-center py-5 text-left text-xl font-semibold uppercase font-heading text-white hover:text-red-400 transition" data-target="collapse-Breakdowns" data-open="false">
+                                    Package Breakdowns
+                                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                                </button>
+                                <div id="collapse-Breakdowns" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
+                                    <div class="pb-6 space-y-6 pt-2">
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">C7 Complete Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Fan & Shroud For C7 Corvettes</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Universal Complete Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan & Shroud</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Fan Package</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Universal Fan Only</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-white mb-2">Accessories</p>
+                                            <ul class="space-y-1 text-gray-300">
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Manual Controller</li>
+                                                <li class="flex items-center"><span class="text-red-500 mr-3">■</span> Wiring Harness</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="border-b border-gray-800">
                                 <button type="button" class="collapse-toggle w-full flex justify-between items-center py-5 text-left text-xl font-semibold uppercase font-heading text-white hover:text-red-400 transition" data-target="collapse-overview" data-open="true">
                                     Overview
@@ -212,9 +293,16 @@
                                     <i class="fas fa-chevron-down transition-transform duration-300"></i>
                                 </button>
                                 <div id="collapse-design" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
-                                    <div class="pb-6 text-gray-300 space-y-4 text-lg">
+                                    <div class="pb-6 text-gray-300 space-y-6 text-lg pt-2">
                                         <p>Precision-engineered pitch and optimized twist angle maximize airflow while minimizing air buffeting noise.</p>
                                         <p>Driven by an 850-watt high-torque motor drawing only 52 amps at full duty cycle. Heavy-duty 8AWG wiring ensures reliability.</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-4 border-t border-gray-800">
+                                            <a href="https://raw.githubusercontent.com/WIKDMotorsports/ShopPages/main/Fan_Dimensioned_Drawing_Holes_Template.pdf" download target="_blank" class="w-full flex flex-col items-center text-center p-3 rounded-md font-bold uppercase font-heading transition-all duration-300 text-white border border-zinc-700 bg-zinc-900 hover:border-red-500 shadow-lg hover:shadow-[0_0_15px_rgba(255,59,48,0.4)] no-underline mt-2">
+                                                <span class="text-lg mb-1">Schematic Diagram</span>
+                                                <span class="text-2xl text-red-500">Download PDF</span>
+                                            </a>
+                                            <p class="text-sm text-gray-400 mt-2">Download a vector PDF version of the fan's dimensioned drawing and a template of mounting holes for installation of shroudless kits</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +313,7 @@
                                     <i class="fas fa-chevron-down transition-transform duration-300"></i>
                                 </button>
                                 <div id="collapse-build" class="collapse-content overflow-hidden transition-all duration-500" style="max-height: 0px;">
-                                    <p class="pb-6 text-gray-300 text-lg">Architecturally reinforced aluminum shroud finished in WIKD Satin Black, precision-engineered for C7 Corvette fitment. Features integrated pressure relief flaps to optimize cooling at highway speeds.</p>
+                                    <p class="pb-6 pt-2 text-gray-300 text-lg">Architecturally reinforced aluminum shroud finished in WIKD Satin Black, precision-engineered for C7 Corvette fitment. Features integrated pressure relief flaps to optimize cooling at highway speeds.</p>
                                 </div>
                             </div>
                         </section>
@@ -265,18 +353,134 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <script>
+    // Data structure linking buttons, info, cart URLs, and images (mapped to the 5 new images in indices 4-8)
+    const productVariants = [
+        { name: 'C7 Complete', price: '$899.99', sub: 'C7 COMPLETE PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=50822265536725&quantity=1&return_to=/cart', imgIndex: 4 },
+        { name: 'Universal Complete', price: '$999.99', sub: 'UNIVERSAL COMPLETE PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53066340237525&quantity=1&return_to=/cart', imgIndex: 5 },
+        { name: 'Universal Fan Only', price: '$699.00', sub: 'UNIVERSAL FAN ONLY', url: 'https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart', imgIndex: 6 },
+        { name: 'Manual Controller', price: '$99.99', sub: 'MANUAL CONTROLLER', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658461397&quantity=1&return_to=/cart', imgIndex: 7 },
+        { name: 'Wiring Harness', price: '$99.99', sub: 'WIRING HARNESS', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658494165&quantity=1&return_to=/cart', imgIndex: 8 }
+    ];
+
+    // Global selection function triggered by clicking a package
+    window.selectVariant = function(index) {
+        const v = productVariants[index];
+        
+        // 1. Update Title and Price Texts
+        const subtitleEl = document.getElementById('main-subtitle');
+        const priceEl = document.getElementById('main-price');
+        
+        subtitleEl.innerText = v.sub;
+        subtitleEl.classList.add('text-white');
+        subtitleEl.classList.remove('text-gray-400');
+        
+        priceEl.innerText = v.price;
+        priceEl.classList.add('lava-gradient-text');
+        priceEl.classList.remove('text-white');
+
+        // 2. Activate Checkout Button
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutText = document.getElementById('checkout-text');
+        checkoutBtn.href = v.url;
+        checkoutText.innerText = `Add ${v.name} to Cart`;
+        checkoutBtn.classList.remove('pointer-events-none', 'text-neutral-600', 'bg-[#0A0A0A]', 'border-neutral-800', 'opacity-50');
+        checkoutBtn.classList.add('lava-outline', 'text-white', 'hover:-translate-y-1', 'bg-black', 'border-transparent');
+
+        // 3. Highlight Selected Package Button
+        document.querySelectorAll('.variant-btn').forEach((btn, i) => {
+            if(i === index) {
+                btn.classList.add('lava-outline', 'text-white', 'border-transparent', 'bg-neutral-900/50');
+                btn.classList.remove('text-neutral-500', 'border-neutral-800', 'bg-[#0A0A0A]');
+            } else {
+                btn.classList.remove('lava-outline', 'text-white', 'border-transparent', 'bg-neutral-900/50');
+                btn.classList.add('text-neutral-500', 'border-neutral-800', 'bg-[#0A0A0A]');
+            }
+        });
+
+        // 4. Highlight Image in Gallery Ticker
+        document.querySelectorAll('.img-target').forEach(imgContainer => {
+            if(parseInt(imgContainer.dataset.imgIndex) === v.imgIndex) {
+                imgContainer.classList.add('lava-outline');
+            } else {
+                imgContainer.classList.remove('lava-outline');
+            }
+        });
+
+        // 5. Scroll to corresponding image smoothly
+        if (window.scrollToGalleryImage) {
+            window.scrollToGalleryImage(v.imgIndex);
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
+        // Combined Array: 4 Old + 5 New Images
         const galleryItems = [
             { src: 'https://cdn.shopify.com/s/files/1/0671/4635/0805/files/DSC07228.jpg?v=1735251043' },
             { src: 'https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=1000' },
-            { src: 'https://www.wikdmotorsports.com/cdn/shop/files/dsc08216_1.jpg?v=1734036302&width=1000' }
+            { src: 'https://www.wikdmotorsports.com/cdn/shop/files/dsc08216_1.jpg?v=1734036302&width=1000' },
+            { src: 'https://github.com/WIKDMotorsports/ShopPages/blob/main/Fan_Dimensioned_Drawing.png?raw=true' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/C7Package.webp?v=1770912589' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage_2.webp?v=1770912631' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/FanOnly.webp?v=1770912640' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/Accessories.webp?v=1770912648' },
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage.webp?v=1770912662' }
         ];
 
         let currentIndex = 0;
         let desktopTickerAnim;
+        let mobileTickerAnim;
         let isMobile = window.innerWidth < 1024;
+        let isInteracting = false;
 
-        // Lightbox
+        // Smooth Scroll Logic for clicking variants
+        window.scrollToGalleryImage = function(imgIndex) {
+            const anim = isMobile ? mobileTickerAnim : desktopTickerAnim;
+            const wrapper = isMobile ? document.getElementById('mobileGalleryWrapper') : document.getElementById('tickerWrapper');
+            const inner = isMobile ? document.getElementById('mobileTickerInner') : document.getElementById('tickerInner');
+            
+            if (!anim || !inner) return;
+
+            const targetEl = inner.querySelector(`[data-img-index="${imgIndex}"]`);
+            if (!targetEl) return;
+
+            let targetProgress = 0;
+            if (isMobile) {
+                // Calculate position relative to the 1st block of duplicated images
+                const blockWidth = inner.scrollWidth / 2;
+                targetProgress = targetEl.offsetLeft / blockWidth;
+            } else {
+                const blockHeight = inner.scrollHeight / 2;
+                targetProgress = targetEl.offsetTop / blockHeight;
+            }
+
+            anim.pause();
+            let currentP = anim.progress();
+            let diff = targetProgress - currentP;
+            
+            // Traverse the shortest path on the infinite loop
+            if (diff > 0.5) diff -= 1;
+            if (diff < -0.5) diff += 1;
+            
+            let pObj = { p: currentP };
+            gsap.to(pObj, {
+                p: currentP + diff,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onUpdate: () => {
+                    let wrappedP = pObj.p % 1;
+                    if (wrappedP < 0) wrappedP += 1;
+                    anim.progress(wrappedP);
+                },
+                onComplete: () => {
+                    // Resume looping if not hovered or touched
+                    if (!isInteracting && !wrapper.matches(':hover')) {
+                        anim.play();
+                    }
+                }
+            });
+        };
+
+        // Lightbox Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const showImage = (index) => {
@@ -289,43 +493,150 @@
         document.querySelector('.lightbox-prev').onclick = () => showImage(currentIndex - 1);
         document.querySelector('.lightbox-next').onclick = () => showImage(currentIndex + 1);
 
+        // Desktop Setup
         function setupDesktopView() {
             const inner = document.getElementById('tickerInner');
             if (!inner) return;
-            const content = galleryItems.map(item => `
-                <div class="image-ticker-card">
-                    <img src="${item.src}" data-src="${item.src}" alt="Gallery Image">
+            const content = galleryItems.map((item, idx) => `
+                <div class="image-ticker-card img-target relative transition-all duration-500 cursor-grab active:cursor-grabbing" data-img-index="${idx}">
+                    <img src="${item.src}" data-src="${item.src}" alt="Gallery Image" class="block w-full h-auto relative z-0 pointer-events-none">
                 </div>
             `).join('');
             inner.innerHTML = `<div class="ticker-block">${content}</div><div class="ticker-block">${content}</div>`;
+            
+            desktopTickerAnim = gsap.to(inner, { yPercent: -50, duration: 40, ease: "none", repeat: -1 });
+            const wrapper = document.getElementById('tickerWrapper');
+            
+            let isDragging = false;
+            let startY = 0;
+            let startProgress = 0;
+            let wasDragged = false;
+
             inner.querySelectorAll('.image-ticker-card').forEach((card) => {
-                card.onclick = () => {
+                card.onclick = (e) => {
+                    if (wasDragged) {
+                        e.preventDefault();
+                        return;
+                    }
                     const src = card.querySelector('img').getAttribute('data-src');
                     const idx = galleryItems.findIndex(i => i.src === src);
                     showImage(idx);
                 };
             });
-            desktopTickerAnim = gsap.to(inner, { yPercent: -50, duration: 25, ease: "none", repeat: -1 });
-            const wrapper = document.getElementById('tickerWrapper');
-            wrapper.onmouseenter = () => desktopTickerAnim.pause();
-            wrapper.onmouseleave = () => desktopTickerAnim.play();
+
+            wrapper.onmouseenter = () => { isInteracting = true; if (!isDragging) desktopTickerAnim.pause(); };
+            wrapper.onmouseleave = () => { isInteracting = false; if (!isDragging) desktopTickerAnim.play(); };
+
+            // Wheel Scroll
+            wrapper.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                desktopTickerAnim.pause();
+                let delta = e.deltaY * 0.0005;
+                let newProgress = (desktopTickerAnim.progress() + delta) % 1;
+                if (newProgress < 0) newProgress += 1;
+                desktopTickerAnim.progress(newProgress);
+            }, {passive: false});
+
+            // Drag Scroll
+            wrapper.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                isInteracting = true;
+                wasDragged = false;
+                startY = e.clientY;
+                startProgress = desktopTickerAnim.progress();
+                desktopTickerAnim.pause();
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                let deltaY = startY - e.clientY;
+                if (Math.abs(deltaY) > 5) wasDragged = true;
+                let deltaProgress = deltaY * 0.0005;
+                let newProgress = (startProgress + deltaProgress) % 1;
+                if (newProgress < 0) newProgress += 1;
+                desktopTickerAnim.progress(newProgress);
+            });
+            window.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    isInteracting = false;
+                    if (!wrapper.matches(':hover')) desktopTickerAnim.play();
+                    setTimeout(() => wasDragged = false, 50);
+                }
+            });
         }
 
+        // Mobile Setup
         function setupMobileView() {
             const inner = document.getElementById('mobileTickerInner');
             if (!inner) return;
-            const content = galleryItems.map(item => `
-                <div class="h-full flex-shrink-0 mr-4 cursor-pointer">
-                    <img src="${item.src}" class="h-full w-auto object-cover rounded-md">
+            const content = galleryItems.map((item, idx) => `
+                <div class="h-full flex-shrink-0 mr-4 cursor-grab active:cursor-grabbing img-target relative transition-all duration-500 rounded-[0.5rem] overflow-hidden bg-[#0A0A0A]" data-img-index="${idx}">
+                    <img src="${item.src}" class="h-full w-auto object-cover relative z-0 pointer-events-none">
                 </div>
             `).join('');
             inner.innerHTML = content + content;
-            inner.querySelectorAll('div').forEach((div, i) => {
-                div.onclick = () => showImage(i % galleryItems.length);
+            
+            mobileTickerAnim = gsap.to(inner, { xPercent: -50, duration: 45, ease: 'none', repeat: -1 });
+            const wrapper = document.getElementById('mobileGalleryWrapper');
+
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let startProgress = 0;
+            let wasDragged = false;
+            let swipeDir = null;
+
+            inner.querySelectorAll('div.img-target').forEach((div, i) => {
+                div.onclick = (e) => {
+                    if (wasDragged) {
+                        e.preventDefault();
+                        return;
+                    }
+                    showImage(i % galleryItems.length);
+                };
             });
-            gsap.to(inner, { x: '-50%', duration: 30, ease: 'none', repeat: -1 });
+
+            // Touch Scroll
+            wrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                isInteracting = true;
+                wasDragged = false;
+                swipeDir = null;
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startProgress = mobileTickerAnim.progress();
+                mobileTickerAnim.pause();
+            }, {passive: true});
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                let currentX = e.touches[0].clientX;
+                let currentY = e.touches[0].clientY;
+                let deltaX = startX - currentX;
+                let deltaY = startY - currentY;
+
+                if (!swipeDir) {
+                    swipeDir = Math.abs(deltaX) > Math.abs(deltaY) ? 'h' : 'v';
+                }
+
+                if (swipeDir === 'h') {
+                    e.preventDefault(); // Stop vertical page scroll while swiping gallery
+                    if (Math.abs(deltaX) > 5) wasDragged = true;
+                    let deltaProgress = deltaX * 0.0005;
+                    let newProgress = (startProgress + deltaProgress) % 1;
+                    if (newProgress < 0) newProgress += 1;
+                    mobileTickerAnim.progress(newProgress);
+                }
+            }, {passive: false});
+
+            wrapper.addEventListener('touchend', () => {
+                isDragging = false;
+                isInteracting = false;
+                mobileTickerAnim.play();
+                setTimeout(() => wasDragged = false, 50);
+            });
         }
 
+        // Accordion Logic
         document.querySelectorAll('.collapse-toggle').forEach(btn => {
             btn.onclick = () => {
                 const target = document.getElementById(btn.dataset.target);
@@ -351,6 +662,7 @@
 
         if (isMobile) setupMobileView(); else setupDesktopView();
         
+        // Entrance Animations
         gsap.registerPlugin(ScrollTrigger);
         gsap.utils.toArray('.anim-stagger').forEach(elem => {
             gsap.from(elem, { scrollTrigger: { trigger: elem, start: 'top 95%' }, opacity: 0, y: 30, duration: 0.6 });
