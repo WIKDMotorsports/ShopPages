@@ -361,11 +361,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <script>
-    // Data structure linking buttons, info, cart URLs, and images (mapped to the 5 new images in indices 4-8)
+    // Data structure linking buttons, info, cart URLs, and images (mapped to the images below)
     const productVariants = [
         { name: 'C7 Package', price: '$899.99', sub: 'C7 PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=50822265536725&quantity=1&return_to=/cart', imgIndex: 4 },
         { name: 'Universal W/ Shroud', price: '$999.99', sub: 'UNIVERSAL PACKAGE W/ SHROUD', url: 'https://www.wikdmotorsports.com/cart/add?id=53066340237525&quantity=1&return_to=/cart', imgIndex: 5 },
-        { name: 'Universal Package', price: '$899.99', sub: 'UNIVERSAL PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart', imgIndex: 8 },
+        { name: 'Universal Package', price: '$799.99', sub: 'UNIVERSAL PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53066346365141&quantity=1&return_to=/cart', imgIndex: 9 },
         { name: 'Fan Only', price: '$699.00', sub: 'FAN ONLY', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658461397&quantity=1&return_to=/cart', imgIndex: 6 },
         { name: 'Accessory Package', price: '$99.99', sub: 'ACCESSORY PACKAGE', url: 'https://www.wikdmotorsports.com/cart/add?id=53195658494165&quantity=1&return_to=/cart', imgIndex: 7 }
     ];
@@ -421,7 +421,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Combined Array: 4 Old + 5 New Images
+        // Combined Array: 4 Old + 5 New Images + 1 Additional Universal Kit Image
         const galleryItems = [
             { src: 'https://cdn.shopify.com/s/files/1/0671/4635/0805/files/DSC07228.jpg?v=1735251043' },
             { src: 'https://www.wikdmotorsports.com/cdn/shop/files/dsc08287_1.jpg?v=1734036302&width=1000' },
@@ -431,7 +431,8 @@
             { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage_2.webp?v=1770912631' },
             { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/FanOnly.webp?v=1770912640' },
             { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/Accessories.webp?v=1770912648' },
-            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage.webp?v=1770912662' }
+            { src: 'https://cdn.shopify.com/s/files/1/0702/1618/8065/files/UniversalPackage.webp?v=1770912662' },
+            { src: 'https://github.com/WIKDMotorsports/Deploy/blob/main/Full%20Fan%20Edit%20(1).jpg?raw=true' }
         ];
 
         let currentIndex = 0;
