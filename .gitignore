@@ -1,0 +1,5 @@
+node_modules/
+jules-scratch/
+server.log
+package.json
+package-lock.json
